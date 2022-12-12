@@ -42,6 +42,12 @@ class Login extends Component {
     this.setState({ password: e.target.value });
   };
 
+  handleShowHidePassword = () => {
+    this.setState({
+      isShowPassword: !this.state.isShowPassword,
+    });
+  };
+
   redirectToSystemPage = () => {
     const { navigate } = this.props;
     const redirectPath = "/system/user-manage";
@@ -133,11 +139,24 @@ class Login extends Component {
                 )}
                 id="password"
                 name="password"
-                type="password"
+                type={this.state.isShowPassword ? "text" : "password"}
                 className="form-control"
                 value={password}
                 onChange={this.onPasswordChange}
               />
+              <span
+                onClick={() => {
+                  this.handleShowHidePassword();
+                }}
+              >
+                <i
+                  class={
+                    this.state.isShowPassword
+                      ? "far fa-eye"
+                      : "far fa-eye-slash"
+                  }
+                ></i>
+              </span>
             </div>
 
             {loginError !== "" && (
