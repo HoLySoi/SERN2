@@ -9,8 +9,9 @@ import userIcon from "../../../src/assets/images/user.svg";
 import passIcon from "../../../src/assets/images/pass.svg";
 import "./Login.scss";
 import { FormattedMessage } from "react-intl";
-
+import { handleLoginApi } from "../../services/userService";
 import adminService from "../../services/adminService";
+import userService from "../../services/userService";
 
 class Login extends Component {
   constructor(props) {
@@ -22,6 +23,8 @@ class Login extends Component {
     username: "",
     password: "",
     loginError: "",
+    isShowPassword: false,
+    errMessage: "",
   };
 
   state = {
@@ -48,58 +51,83 @@ class Login extends Component {
     });
   };
 
-  redirectToSystemPage = () => {
-    const { navigate } = this.props;
-    const redirectPath = "/system/user-manage";
-    navigate(`${redirectPath}`);
-  };
+  // redirectToSystemPage = () => {
+  //   const { navigate } = this.props;
+  //   const redirectPath = "/system/user-manage";
+  //   navigate(`${redirectPath}`);
+  // };
 
-  processLogin = () => {
-    const { username, password } = this.state;
+  handleLogin = async () => {
+    this.setState({
+      errMessage: "",
+    });
 
-    const { adminLoginSuccess, adminLoginFail } = this.props;
-    let loginBody = {
-      username: "admin",
-      password: "123456",
-    };
-    //sucess
-    let adminInfo = {
-      tlid: "0",
-      tlfullname: "Administrator",
-      custype: "A",
-      accessToken: "eyJhbGciOiJIU",
-    };
-
-    adminLoginSuccess(adminInfo);
-    this.refresh();
-    this.redirectToSystemPage();
     try {
-      adminService.login(loginBody);
-    } catch (e) {
-      console.log("error login : ", e);
+      let data = await handleLoginApi(this.state.username, this.state.password);
+      if (data && data.errCode !== 0) {
+        this.setState({
+          errMessage: data.message,
+        });
+      }
+      if (data && data.errCode === 0) {
+        this.props.userLoginSuccess(data.user);
+        console.log("login successed");
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.data) {
+          this.setState({
+            errMessage: error.response.data.message,
+          });
+        }
+      }
     }
+
+    // const { username, password } = this.state;
+
+    // const { adminLoginSuccess, adminLoginFail } = this.props;
+    // let loginBody = {
+    //   username: "admin",
+    //   password: "123456",
+    // };
+    // //sucess
+    // let adminInfo = {
+    //   tlid: "0",
+    //   tlfullname: "Administrator",
+    //   custype: "A",
+    //   accessToken: "eyJhbGciOiJIU",
+    // };
+
+    // adminLoginSuccess(adminInfo);
+    // this.refresh();
+    // this.redirectToSystemPage();
+    // try {
+    //   adminService.login(loginBody);
+    // } catch (e) {
+    //   console.log("error login : ", e);
+    // }
   };
 
-  handlerKeyDown = (event) => {
-    const keyCode = event.which || event.keyCode;
-    if (keyCode === KeyCodeUtils.ENTER) {
-      event.preventDefault();
-      if (!this.btnLogin.current || this.btnLogin.current.disabled) return;
-      this.btnLogin.current.click();
-    }
-  };
+  // handlerKeyDown = (event) => {
+  //   const keyCode = event.which || event.keyCode;
+  //   if (keyCode === KeyCodeUtils.ENTER) {
+  //     event.preventDefault();
+  //     if (!this.btnLogin.current || this.btnLogin.current.disabled) return;
+  //     this.btnLogin.current.click();
+  //   }
+  // };
 
-  componentDidMount() {
-    document.addEventListener("keydown", this.handlerKeyDown);
-  }
+  // componentDidMount() {
+  //   document.addEventListener("keydown", this.handlerKeyDown);
+  // }
 
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.handlerKeyDown);
-    // fix Warning: Can't perform a React state update on an unmounted component
-    this.setState = (state, callback) => {
-      return;
-    };
-  }
+  // componentWillUnmount() {
+  //   document.removeEventListener("keydown", this.handlerKeyDown);
+  //   // fix Warning: Can't perform a React state update on an unmounted component
+  //   this.setState = (state, callback) => {
+  //     return;
+  //   };
+  // }
 
   render() {
     const { username, password, loginError } = this.state;
@@ -172,9 +200,14 @@ class Login extends Component {
                 type="submit"
                 className="btn"
                 value={LanguageUtils.getMessageByKey("login.login", lang)}
-                onClick={this.processLogin}
+                onClick={this.handleLogin}
               />
             </div>
+
+            {/* <div className="col-12" style={{ color: "red" }}>
+              {this.state.errMessage}
+            </div> */}
+
             <div className="col-12">
               <span className="forgot-password">Quên mật khẩu</span>
             </div>
@@ -201,9 +234,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    adminLoginSuccess: (adminInfo) =>
-      dispatch(actions.adminLoginSuccess(adminInfo)),
-    adminLoginFail: () => dispatch(actions.adminLoginFail()),
+    userLoginSuccess: (userInfor) =>
+      dispatch(actions.userLoginSuccess(userInfor)),
+    // userLoginFail: () => dispatch(actions.userLoginFail()),
   };
 };
 
