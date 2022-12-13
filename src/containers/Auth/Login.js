@@ -204,9 +204,11 @@ class Login extends Component {
               />
             </div>
 
-            {/* <div className="col-12" style={{ color: "red" }}>
-              {this.state.errMessage}
-            </div> */}
+            <div>
+              <div className="col-12 noti" style={{ color: "red" }}>
+                {this.state.errMessage}
+              </div>
+            </div>
 
             <div className="col-12">
               <span className="forgot-password">Quên mật khẩu</span>
