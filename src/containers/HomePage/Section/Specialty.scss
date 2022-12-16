@@ -1,10 +1,84 @@
-.slick-prev {
-    background-color: red !important;
-    position        : relative !important;
-    left            : 0 !important;
-}
+.section-spcecialty {
+    height    : 400px;
+    background: #f5f5f5;
 
-.slick-next {
-    background-color: blue !important;
-    right           : 0 !important;
+    .specialty-container {
+        margin        : 0 100px;
+        display       : flex;
+        flex-direction: column;
+
+        .specialty-header {
+            height       : 60px;
+            margin-bottom: 30px;
+            padding-top  : 30px;
+
+            .title-section {
+                font-size  : 22px;
+                font-weight: 600;
+            }
+
+            .btn-section {
+                float         : right;
+                padding       : 10px 15px;
+                border        : none;
+                outline       : none;
+                display       : block;
+                background    : #ebebeb;
+                color         : black;
+                cursor        : pointer;
+                text-transform: uppercase;
+
+                &:hover {
+                    color     : #fff;
+                    background: #f7d800;
+                }
+            }
+        }
+
+        .specialty-body {
+            .specialty-customize {
+                // border : 2px solid #45c3d2;
+                padding: 0 20px;
+
+
+                .bg-image {
+                    width              : 100% !important;
+                    height             : 200px;
+                    background         : url(../../../assets/Specialty/120331-co-xuong-khop.jpg);
+                    background-position: center center;
+                    background-repeat  : no-repeat;
+                    background-size    : cover;
+                    background-color   : #eee;
+                }
+            }
+
+
+
+            .slick-prev {
+                height     : 45px !important;
+                width      : 40px !important;
+                z-index    : 10;
+                margin-left: 20px !important;
+                background : #45c3d2 !important;
+                opacity    : 0.7;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            .slick-next {
+                height      : 45px !important;
+                width       : 40px !important;
+                z-index     : 10;
+                margin-right: 20px !important;
+                background  : #45c3d2 !important;
+                opacity     : 0.7;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
 }
