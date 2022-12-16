@@ -91,6 +91,8 @@
             .title-section {
                 font-size  : 22px;
                 font-weight: 600;
+                float      : left;
+                margin-left: 30px;
             }
 
             .btn-section {
@@ -132,4 +134,8 @@
         }
     }
 
+}
+
+.home-footer {
+    margin: 20px;
 }
