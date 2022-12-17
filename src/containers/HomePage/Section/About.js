@@ -16,9 +16,9 @@ class About extends Component {
                 height="720"
                 src="https://www.youtube.com/embed/dQGCTyqv9_k"
                 title="nhạc jazz buổi sáng mùa đông ngọt ngào ❄️ nhạc jazz và đàn piano bossa nova cho tâm trạng vui vẻ"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             </div>
           </div>
