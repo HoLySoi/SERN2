@@ -236,9 +236,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    userLoginSuccess: (userInfor) =>
-      dispatch(actions.userLoginSuccess(userInfor)),
-    // userLoginFail: () => dispatch(actions.userLoginFail()),
+    userLoginSuccess: (userInfo) =>
+      dispatch(actions.userLoginSuccess(userInfo)),
+    userLoginFail: () => dispatch(actions.userLoginFail()),
   };
 };
 
