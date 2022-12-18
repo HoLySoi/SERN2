@@ -24,6 +24,11 @@ const deleteUserService = (userId) => {
   });
 };
 
+const editUserService = (inputData) => {
+  // console.log("check data from service:", data);
+  return axios.put("/api/edit-user", inputData);
+};
+
 const getAllCodeService = (inputType) => {
   return axios.get(`/api/allcode?type=${inputType}`);
 };
@@ -33,5 +38,6 @@ export {
   getAllUsers,
   createNewUserService,
   deleteUserService,
+  editUserService,
   getAllCodeService,
 };
