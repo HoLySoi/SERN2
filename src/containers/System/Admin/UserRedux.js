@@ -1,15 +1,32 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
+import { getAllCodeService } from "../../../services/userService";
+import { LANGUAGES } from "../../../utils";
+
 class UserRedux extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { genderArr: [] };
   }
 
-  componentDidMount() {}
+  async componentDidMount() {
+    try {
+      let res = await getAllCodeService("gender");
+      if (res && res.errCode === 0) {
+        this.setState({
+          genderArr: res.data,
+        });
+      }
+      // console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   render() {
+    let genders = this.state.genderArr;
+    let language = this.props.language;
     return (
       <div className="user-redux-container">
         <div className="title">
@@ -17,10 +34,10 @@ class UserRedux extends Component {
         </div>
         <div className="user-redux-body">
           <div className="container ">
-            <div className="row">
+            <div className="">
               <form>
-                <div className="row mb-4">
-                  <div className="col">
+                <div className="row mt-4 mb-4">
+                  <div className="form-group col-md-6">
                     <div className="form-outline">
                       <label className="form-label" for="form6Example1">
                         <FormattedMessage id="manage-user.email" />
@@ -71,6 +88,7 @@ class UserRedux extends Component {
                     </div>
                   </div>
                 </div>
+
                 <div className="form-outline mb-4">
                   <label className="form-label" for="form6Example3">
                     <FormattedMessage id="manage-user.phone-number" />
@@ -91,33 +109,46 @@ class UserRedux extends Component {
                     className="form-control"
                   />
                 </div>
-                <div className="col-4 mb-4">
-                  <label className="form-label" for="form6Example4">
-                    <FormattedMessage id="manage-user.gender" />
-                  </label>
-                  <select className="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
+                <div className="col-12 d-inline-flex">
+                  {" "}
+                  <div className="col-3 mb-4">
+                    <label className="form-label" for="form6Example4">
+                      <FormattedMessage id="manage-user.gender" />
+                    </label>
+                    <select className="form-control">
+                      {genders &&
+                        genders.length > 0 &&
+                        genders.map((item, index) => {
+                          return (
+                            <option key={index}>
+                              {language === LANGUAGES.VI
+                                ? item.valueVi
+                                : item.valueEn}
+                            </option>
+                          );
+                        })}
+                    </select>
+                  </div>
+                  <div className="col-3 mb-4">
+                    <label className="form-label" for="form6Example4">
+                      <FormattedMessage id="manage-user.position" />
+                    </label>
+                    <select className="form-control">
+                      <option selected>Choose...</option>
+                      <option>...</option>
+                    </select>
+                  </div>
+                  <div className="col-3 mb-4">
+                    <label className="form-label" for="form6Example4">
+                      <FormattedMessage id="manage-user.role" />
+                    </label>
+                    <select className="form-control">
+                      <option selected>Choose...</option>
+                      <option>...</option>
+                    </select>
+                  </div>
                 </div>
-                <div className="col-4 mb-4">
-                  <label className="form-label" for="form6Example4">
-                    <FormattedMessage id="manage-user.position" />
-                  </label>
-                  <select className="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
-                </div>
-                <div className="col-4 mb-4">
-                  <label className="form-label" for="form6Example4">
-                    <FormattedMessage id="manage-user.role" />
-                  </label>
-                  <select className="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
-                </div>
+
                 <div className="form-outline mb-4">
                   <label className="form-label" for="form6Example4">
                     <FormattedMessage id="manage-user.image" />
@@ -144,7 +175,9 @@ class UserRedux extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    language: state.app.language,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
