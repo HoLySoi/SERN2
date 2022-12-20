@@ -81,7 +81,7 @@ class UserRedux extends Component {
         password: "",
         firstName: "",
         lastName: "",
-        phoneNumber: "",
+        phonenumber: "",
         address: "",
         gender: "",
         position: "",
@@ -379,7 +379,7 @@ class UserRedux extends Component {
                   </div>
                 </div>
                 <button
-                  type="submit"
+                  type="button"
                   className="btn-saveUser btn btn-primary btn-block my-6"
                   onClick={() => this.handleSaveUser()}
                 >
