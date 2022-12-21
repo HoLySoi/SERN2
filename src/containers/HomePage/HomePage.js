@@ -16,10 +16,10 @@ class HomePage extends Component {
   render() {
     let settings = {
       dots: true,
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToShow: 4,
-      slidesToScroll: 1,
+      slidesToScroll: 2,
     };
     return (
       <div className="text-center">

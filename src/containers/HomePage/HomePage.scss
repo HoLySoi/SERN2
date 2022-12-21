@@ -24,6 +24,10 @@
     }
 }
 
+.slick-disabled {
+    display: none !important;
+}
+
 .section-share {
     &.section-specialty {
         background: #dadada;
