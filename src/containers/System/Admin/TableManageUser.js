@@ -50,8 +50,6 @@ class TableManageUser extends Component {
 
   render() {
     let arrUsers = this.state.usersRedux;
-
-    console.log("danh sach nguoi dung", arrUsers);
     return (
       <div className="users-container">
         <div className="title text-center"> Manage Users</div>
