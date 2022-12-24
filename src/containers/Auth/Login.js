@@ -51,6 +51,12 @@ class Login extends Component {
     });
   };
 
+  handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.keyCode === 13) {
+      this.handleLogin();
+    }
+  };
+
   // redirectToSystemPage = () => {
   //   const { navigate } = this.props;
   //   const redirectPath = "/system/user-manage";
@@ -171,6 +177,7 @@ class Login extends Component {
                 className="form-control"
                 value={password}
                 onChange={this.onPasswordChange}
+                onKeyDown={(event) => this.handleKeyDown(event)}
               />
               <span
                 onClick={() => {
