@@ -131,10 +131,9 @@ class ManageSchedule extends Component {
     let { language } = this.props;
     return (
       <div className="manage-schedule-container">
-        {" "}
         <div className="m-s-title">
           <FormattedMessage id="manage-schedule-title" />
-        </div>{" "}
+        </div>
         <div className="container">
           <div className="row">
             <div className="col-6 form-group">

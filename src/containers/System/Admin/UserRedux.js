@@ -342,7 +342,6 @@ class UserRedux extends Component {
                   />
                 </div>
                 <div className="col-12 d-inline-flex">
-                  {" "}
                   <div className="col-3 mb-4">
                     <label className="form-label" for="form6Example4">
                       <FormattedMessage id="manage-user.gender" />

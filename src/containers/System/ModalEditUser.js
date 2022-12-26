@@ -124,7 +124,7 @@ class ModalEditUser extends Component {
                 }}
                 value={this.state.firstName}
               />
-            </div>{" "}
+            </div>
             <div className="input-container">
               <label>lastName</label>
               <input
@@ -134,7 +134,7 @@ class ModalEditUser extends Component {
                 }}
                 value={this.state.lastName}
               />
-            </div>{" "}
+            </div>
             <div className="input-container">
               <label>address</label>
               <input
@@ -156,7 +156,7 @@ class ModalEditUser extends Component {
             }}
           >
             Save change
-          </Button>{" "}
+          </Button>
           <Button
             color="secondary"
             className="px-3"
