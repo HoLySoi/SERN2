@@ -62,7 +62,7 @@
     "title": "Manage doctor examination plan",
     "choose-doctor": "Choose doctor",
     "choose-date": "Choose date",
-    "save": "Save infor"
+    "save": "Save Infor"
   },
   "patient": {
     "detail-doctor": {
@@ -77,8 +77,14 @@
       "title": "Create more information doctor",
       "select-doctor": "Select doctor",
       "intro": "Introduction:",
-      "add": "Create infor",
-      "save": "Save infor"
+      "add": "Create Infor",
+      "save": "Save Infor",
+      "price": "Price",
+      "payment": "Payment",
+      "province": "Province",
+      "nameClinic": "Clinic's name",
+      "addressClinic": "Clinic's address",
+      "note": "Note"
     }
   }
 }
