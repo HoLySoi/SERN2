@@ -285,7 +285,6 @@ class ManageDoctor extends Component {
         <div className="more-infor-extra row">
           <div className="col-4 form-group">
             <label>
-              {" "}
               <FormattedMessage id="admin.manage-doctor.price" />
             </label>
             <Select
@@ -338,7 +337,6 @@ class ManageDoctor extends Component {
           </div>
           <div className="col-4 form-group">
             <label>
-              {" "}
               <FormattedMessage id="admin.manage-doctor.addressClinic" />
             </label>
             <input

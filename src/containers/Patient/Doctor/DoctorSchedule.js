@@ -121,7 +121,6 @@ class DoctorSchedule extends Component {
 
     return (
       <>
-        {" "}
         <div className="doctor-schedule-container">
           <div className="all-schedule">
             <select onChange={(event) => this.handleOnChangeSelect(event)}>
