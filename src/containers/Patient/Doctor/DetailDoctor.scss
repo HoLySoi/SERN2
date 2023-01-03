@@ -7,11 +7,13 @@
     margin : 0 100px;
 
     .content-left {
-      width        : 180px;
-      background   : center center no-repeat;
-      height       : 180px;
-      border-radius: 50%;
-      margin       : 10px 20px;
+      width              : 180px;
+      background-size    : cover;
+      background-repeat  : no-repeat;
+      background-position: center;
+      height             : 180px;
+      border-radius      : 50%;
+      margin             : 10px 20px;
     }
 
     .content-right {
