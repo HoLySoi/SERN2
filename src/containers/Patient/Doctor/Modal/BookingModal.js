@@ -173,7 +173,6 @@ class BookingModal extends Component {
         <div className="booking-modal-content">
           <div className="booking-modal-header">
             <span className="left">
-              {" "}
               <FormattedMessage id="patient.booking-modal.title" />
             </span>
             <span className="right" onClick={closeBookingClose}>
@@ -191,7 +190,6 @@ class BookingModal extends Component {
             <div className="row">
               <div className="col-6 from-group">
                 <label>
-                  {" "}
                   <FormattedMessage id="patient.booking-modal.fullName" />
                 </label>
                 <input
@@ -216,7 +214,6 @@ class BookingModal extends Component {
               </div>
               <div className="col-6 from-group">
                 <label>
-                  {" "}
                   <FormattedMessage id="patient.booking-modal.email" />
                 </label>
                 <input
@@ -227,7 +224,6 @@ class BookingModal extends Component {
               </div>
               <div className="col-6 from-group">
                 <label>
-                  {" "}
                   <FormattedMessage id="patient.booking-modal.address" />
                 </label>
                 <input
@@ -240,7 +236,6 @@ class BookingModal extends Component {
               </div>
               <div className="col-12 from-group">
                 <label>
-                  {" "}
                   <FormattedMessage id="patient.booking-modal.reason" />
                 </label>
                 <input
@@ -253,7 +248,6 @@ class BookingModal extends Component {
               </div>
               <div className="col-6 from-group">
                 <label>
-                  {" "}
                   <FormattedMessage id="patient.booking-modal.birthday" />
                 </label>
 
@@ -262,10 +256,9 @@ class BookingModal extends Component {
                   className="form-control"
                   value={this.state.birthday}
                 />
-              </div>{" "}
+              </div>
               <div className="col-6 from-group">
                 <label>
-                  {" "}
                   <FormattedMessage id="patient.booking-modal.gender" />
                 </label>
 
