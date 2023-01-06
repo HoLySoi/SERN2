@@ -2,17 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./DetailSpecialty.scss";
 import HomeHeader from "../../HomePage/HomeHeader";
-// import moment from "moment";
-// import localization from "moment/locale/vi";
-// import { LANGUAGES } from "../../../utils";
-// import { getScheduleDoctorByDate } from "../../../services/userService";
-// import { FormattedMessage } from "react-intl";
+import DoctorSchedule from "../Doctor/DoctorSchedule";
+import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
+import ProfileDoctor from "../Doctor/ProfileDoctor";
 
 class DetailSpecialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //   allDays: [],
+      arrDoctorId: [62, 41, 39],
       //   allAvailableTime: [],
     };
   }
@@ -45,14 +43,43 @@ class DetailSpecialty extends Component {
   }
 
   render() {
-    // let { allDays, allAvailableTime } = this.state;
+    let { arrDoctorId } = this.state;
     // let { language } = this.props;
 
     return (
-      <>
+      <div className="detail-specialty-container">
+        {" "}
         <HomeHeader />
-        <div className="doctor-schedule-container">Hello world</div>
-      </>
+        <div className="detail-specialty-body">
+          <div className="description-specialty"></div>
+          {arrDoctorId &&
+            arrDoctorId.length > 0 &&
+            arrDoctorId.map((item, index) => {
+              return (
+                <div className="each-doctor" key={index}>
+                  <div className="dt-content-left">
+                    {" "}
+                    <div className="profile-doctor">
+                      <ProfileDoctor
+                        doctorId={item}
+                        isShowDescriptionDoctor={true}
+                      />
+                    </div>
+                  </div>
+                  <div className="dt-content-right">
+                    {" "}
+                    <div className="profile-schedule">
+                      <DoctorSchedule doctorIdFromParent={item} />
+                    </div>{" "}
+                    <div className="doctor-extra-infor">
+                      <DoctorExtraInfor doctorIdFromParent={item} />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
     );
   }
 }
