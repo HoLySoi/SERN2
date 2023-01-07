@@ -23,7 +23,7 @@ class System extends Component {
               <Route
                 path="/system/manage-specialty"
                 component={ManageSpecialty}
-              />{" "}
+              />
               <Route path="/system/manage-clinic" component={ManageClinic} />
               <Route
                 component={() => {

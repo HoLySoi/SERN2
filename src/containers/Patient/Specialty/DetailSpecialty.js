@@ -130,7 +130,6 @@ class DetailSpecialty extends Component {
 
     return (
       <div className="detail-specialty-container">
-        {" "}
         <HomeHeader />
         <div className="detail-specialty-body">
           <div className="description-specialty">
@@ -141,7 +140,7 @@ class DetailSpecialty extends Component {
                 }}
               ></div>
             )}
-          </div>{" "}
+          </div>
           <div className="search-sp-doctor">
             <select onChange={(event) => this.handleOnChangeSelect(event)}>
               {listProvince &&
@@ -161,7 +160,6 @@ class DetailSpecialty extends Component {
               return (
                 <div className="each-doctor" key={index}>
                   <div className="dt-content-left">
-                    {" "}
                     <div className="profile-doctor">
                       <ProfileDoctor
                         doctorId={item}
@@ -172,10 +170,9 @@ class DetailSpecialty extends Component {
                     </div>
                   </div>
                   <div className="dt-content-right">
-                    {" "}
                     <div className="profile-schedule">
                       <DoctorSchedule doctorIdFromParent={item} />
-                    </div>{" "}
+                    </div>
                     <div className="doctor-extra-infor">
                       <DoctorExtraInfor doctorIdFromParent={item} />
                     </div>

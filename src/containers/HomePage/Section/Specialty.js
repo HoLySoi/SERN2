@@ -46,7 +46,6 @@ class Specialty extends Component {
               <FormattedMessage id="homepage.specialty-poplular" />
             </span>
             <button className="btn-section">
-              {" "}
               <FormattedMessage id="homepage.more-infor" />
             </button>
           </div>

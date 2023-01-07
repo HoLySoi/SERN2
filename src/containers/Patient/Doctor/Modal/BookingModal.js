@@ -82,7 +82,7 @@ class BookingModal extends Component {
     });
   };
 
-  handleOnchangeDatePicker = (date) => {
+  handleOnChangeDatePicker = (date) => {
     this.setState({
       birthday: date[0],
     });
@@ -254,7 +254,7 @@ class BookingModal extends Component {
                 </label>
 
                 <DatePicker
-                  onChange={this.handleOnchangeDatePicker}
+                  onChange={this.handleOnChangeDatePicker}
                   className="form-control"
                   value={this.state.birthday}
                 />

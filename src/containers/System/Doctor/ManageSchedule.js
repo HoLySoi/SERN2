@@ -66,7 +66,7 @@ class ManageSchedule extends Component {
   handleChangeSelect = async (selectedOption) => {
     this.setState({ selectedDoctor: selectedOption });
   };
-  handleOnchangeDatePicker = (date) => {
+  handleOnChangeDatePicker = (date) => {
     this.setState({ currentDate: date[0] });
   };
 
@@ -156,7 +156,7 @@ class ManageSchedule extends Component {
                 <FormattedMessage id="manage-schedule.choose-date" />
               </label>
               <DatePicker
-                onChange={this.handleOnchangeDatePicker}
+                onChange={this.handleOnChangeDatePicker}
                 className="form-control"
                 value={this.state.currentDate}
                 minDate={yesterday}

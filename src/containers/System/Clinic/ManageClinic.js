@@ -110,7 +110,7 @@ class ManageClinic extends Component {
               type="file"
               onChange={(event) => this.handleOnchangeImage(event)}
             />
-          </div>{" "}
+          </div>
           <div className="col-6 form-group">
             <label> Địa chỉ phòng khám </label>
             <input
