@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import {
   getAllClinic,
   getAllDetailClinicById,
+  deleteClinic,
 } from "../../../services/userService";
 const mdParser = new MarkdownIt();
 
@@ -27,13 +28,17 @@ class ManageClinic extends Component {
   }
 
   async componentDidMount() {
+    await this.getAllClinicFromReact();
+  }
+
+  getAllClinicFromReact = async () => {
     let response = await getAllClinic();
     if (response && response.errCode === 0) {
       this.setState({
         arrClinic: response.data,
       });
     }
-  }
+  };
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     // if (this.props.language !== prevProps.language) {
@@ -84,6 +89,7 @@ class ManageClinic extends Component {
     let res = await createNewClinic(this.state);
     if (res && res.errCode === 0) {
       toast.success("Add new clinic succeeds!");
+      await this.getAllClinicFromReact();
       this.setState({
         name: "",
         address: "",
@@ -94,6 +100,20 @@ class ManageClinic extends Component {
     } else {
       toast.error("Something wrongs....");
       console.log("check res: ", res);
+    }
+  };
+
+  handleDeleteClinic = async (clinic) => {
+    try {
+      let res = await deleteClinic(clinic.id);
+      if (res && res.errCode === 0) {
+        toast.success("Delete clinic succeeds!");
+        await this.getAllClinicFromReact();
+      } else {
+        toast.error("Something wrongs....");
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -152,7 +172,8 @@ class ManageClinic extends Component {
             </div>
           </div>
         </div>
-        <div className="users-table mt-3 mx-5">
+        <div className="ms-title mt-3">Danh sách Phòng khám</div>
+        <div className="users-table mt-3 mx-5 mb-5">
           <table id="customers">
             <tbody>
               <tr>
@@ -180,7 +201,7 @@ class ManageClinic extends Component {
                         </button>
                         <button
                           className="btn-delete"
-                          // onClick={() => this.handleDeleteUser(item)}
+                          onClick={() => this.handleDeleteClinic(item)}
                         >
                           <i className="fas fa-trash"></i>
                         </button>

@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import {
   getAllHandbook,
   getAllDetailHandbookById,
+  deleteHandbook,
 } from "../../../services/userService";
 const mdParser = new MarkdownIt();
 
@@ -26,6 +27,10 @@ class ManageHandbook extends Component {
   }
 
   async componentDidMount() {
+    await this.getAllHandbookFromReact();
+  }
+
+  getAllHandbookFromReact = async () => {
     let response = await getAllHandbook();
     if (response && response.errCode === 0) {
       this.setState({
@@ -33,7 +38,7 @@ class ManageHandbook extends Component {
       });
     }
     // console.log("check res", response);
-  }
+  };
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     // if (this.props.language !== prevProps.language) {
@@ -84,6 +89,7 @@ class ManageHandbook extends Component {
     let res = await createNewHandbook(this.state);
     if (res && res.errCode === 0) {
       toast.success("Add new handbook succeeds!");
+      await this.getAllHandbookFromReact();
       this.setState({
         name: "",
         imageBase64: "",
@@ -96,6 +102,19 @@ class ManageHandbook extends Component {
     }
   };
 
+  handleDeleteHandbook = async (handbook) => {
+    try {
+      let res = await deleteHandbook(handbook.id);
+      if (res && res.errCode === 0) {
+        toast.success("Delete handbook succeeds!");
+        await this.getAllHandbookFromReact();
+      } else {
+        toast.error("Something wrongs....");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   render() {
     // let { allDays, allAvailableTime } = this.state;
     // let { language } = this.props;
@@ -127,7 +146,7 @@ class ManageHandbook extends Component {
             </div>
             <div className="col-12">
               <MdEditor
-                style={{ height: "600px" }}
+                style={{ height: "450px" }}
                 renderHTML={(text) => mdParser.render(text)}
                 onChange={this.handleEditorChange}
                 value={this.state.descriptionMarkdown}
@@ -143,7 +162,8 @@ class ManageHandbook extends Component {
             </div>
           </div>
         </div>
-        <div className="users-table mt-3 mx-5">
+        <div className="ms-title mt-3">Danh sách cẩm nang</div>
+        <div className="users-table mt-3 mx-5 mb-5">
           <table id="customers">
             <tbody>
               <tr>
@@ -163,13 +183,13 @@ class ManageHandbook extends Component {
                       <td>
                         <button
                           className="btn-edit"
-                          // onClick={() => this.handleEditUser(item)}
+                          // onClick={() => this.handleEditHandbook(item)}
                         >
                           <i className="fas fa-pencil-alt"></i>
                         </button>
                         <button
                           className="btn-delete"
-                          // onClick={() => this.handleDeleteUser(item)}
+                          onClick={() => this.handleDeleteHandbook(item)}
                         >
                           <i className="fas fa-trash"></i>
                         </button>

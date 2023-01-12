@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import {
   getAllSpecialty,
   getAllDetailSpecialtyById,
+  deleteSpecialty,
 } from "../../../services/userService";
 const mdParser = new MarkdownIt();
 
@@ -26,13 +27,17 @@ class ManageSpecialty extends Component {
   }
 
   async componentDidMount() {
+    await this.getAllSpecialtyFromReact();
+  }
+
+  getAllSpecialtyFromReact = async () => {
     let response = await getAllSpecialty();
     if (response && response.errCode === 0) {
       this.setState({
         arrSpecialty: response.data,
       });
     }
-  }
+  };
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     // if (this.props.language !== prevProps.language) {
@@ -83,6 +88,7 @@ class ManageSpecialty extends Component {
     let res = await createNewSpecialty(this.state);
     if (res && res.errCode === 0) {
       toast.success("Add new specialty succeeds!");
+      await this.getAllSpecialtyFromReact();
       this.setState({
         name: "",
         imageBase64: "",
@@ -94,7 +100,19 @@ class ManageSpecialty extends Component {
       console.log("check res: ", res);
     }
   };
-
+  handleDeleteSpecialty = async (specialty) => {
+    try {
+      let res = await deleteSpecialty(specialty.id);
+      if (res && res.errCode === 0) {
+        toast.success("Delete specialty succeeds!");
+        await this.getAllSpecialtyFromReact();
+      } else {
+        toast.error("Something wrongs....");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   render() {
     // let { allDays, allAvailableTime } = this.state;
     // let { language } = this.props;
@@ -141,7 +159,8 @@ class ManageSpecialty extends Component {
             </div>
           </div>
         </div>
-        <div className="users-table mt-3 mx-5">
+        <div className="ms-title mt-3">Danh sách Chuyên khoa</div>
+        <div className="users-table mt-3 mx-5 mb-5">
           <table id="customers">
             <tbody>
               <tr>
@@ -167,7 +186,7 @@ class ManageSpecialty extends Component {
                         </button>
                         <button
                           className="btn-delete"
-                          // onClick={() => this.handleDeleteUser(item)}
+                          onClick={() => this.handleDeleteSpecialty(item)}
                         >
                           <i className="fas fa-trash"></i>
                         </button>

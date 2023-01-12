@@ -89,6 +89,14 @@ const getAllDetailSpecialtyById = (data) => {
   );
 };
 
+const deleteSpecialty = (Id) => {
+  return axios.delete("/api/delete-specialty", {
+    data: {
+      id: Id,
+    },
+  });
+};
+
 const createNewHandbook = (data) => {
   return axios.post(`/api/create-new-handbook`, data);
 };
@@ -99,6 +107,14 @@ const getAllHandbook = () => {
 
 const getAllDetailHandbookById = (data) => {
   return axios.get(`/api/get-detail-handbook-by-id?id=${data.id}`);
+};
+
+const deleteHandbook = (Id) => {
+  return axios.delete("/api/delete-handbook", {
+    data: {
+      id: Id,
+    },
+  });
 };
 
 const createNewClinic = (data) => {
@@ -113,6 +129,14 @@ const getAllDetailClinicById = (data) => {
   return axios.get(
     `/api/get-detail-clinic-by-id?id=${data.id}&location=${data.location}`
   );
+};
+
+const deleteClinic = (Id) => {
+  return axios.delete("/api/delete-clinic", {
+    data: {
+      id: Id,
+    },
+  });
 };
 
 const getAllPatientForDoctor = (data) => {
@@ -153,4 +177,7 @@ export {
   createNewHandbook,
   getAllHandbook,
   getAllDetailHandbookById,
+  deleteHandbook,
+  deleteSpecialty,
+  deleteClinic,
 };
