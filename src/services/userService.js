@@ -98,9 +98,7 @@ const getAllHandbook = () => {
 };
 
 const getAllDetailHandbookById = (data) => {
-  return axios.get(
-    `/api/get-detail-handbook-by-id?id=${data.id}&location=${data.location}`
-  );
+  return axios.get(`/api/get-detail-handbook-by-id?id=${data.id}`);
 };
 
 const createNewClinic = (data) => {

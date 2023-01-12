@@ -7,7 +7,10 @@ import MdEditor from "react-markdown-editor-lite";
 import { CommonUtils } from "../../../utils";
 import { createNewClinic } from "../../../services/userService";
 import { toast } from "react-toastify";
-
+import {
+  getAllClinic,
+  getAllDetailClinicById,
+} from "../../../services/userService";
 const mdParser = new MarkdownIt();
 
 class ManageClinic extends Component {
@@ -19,10 +22,18 @@ class ManageClinic extends Component {
       imageBase64: "",
       descriptionHTML: "",
       descriptionMarkdown: "",
+      arrClinic: [],
     };
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    let response = await getAllClinic();
+    if (response && response.errCode === 0) {
+      this.setState({
+        arrClinic: response.data,
+      });
+    }
+  }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     // if (this.props.language !== prevProps.language) {
@@ -89,55 +100,98 @@ class ManageClinic extends Component {
   render() {
     // let { allDays, allAvailableTime } = this.state;
     // let { language } = this.props;
-
+    console.log("check state", this.state);
+    let arrClinic = this.state.arrClinic;
     return (
-      <div className="manage-clinic-container">
-        <div className="ms-title">Quản lý Phòng khám</div>
-        <div className="add-new-clinic row">
-          <div className="col-6 form-group">
-            <label> Tên Phòng khám </label>
-            <input
-              className="form-control"
-              type="text"
-              value={this.state.name}
-              onChange={(event) => this.handleOnChangeInput(event, "name")}
-            />
-          </div>
-          <div className="col-6 form-group">
-            <label> Ảnh Phòng khám </label>
-            <input
-              className="form-control-file"
-              type="file"
-              onChange={(event) => this.handleOnchangeImage(event)}
-            />
-          </div>
-          <div className="col-6 form-group">
-            <label> Địa chỉ phòng khám </label>
-            <input
-              className="form-control"
-              type="text"
-              value={this.state.address}
-              onChange={(event) => this.handleOnChangeInput(event, "address")}
-            />
-          </div>
-          <div className="col-12">
-            <MdEditor
-              style={{ height: "300px" }}
-              renderHTML={(text) => mdParser.render(text)}
-              onChange={this.handleEditorChange}
-              value={this.state.descriptionMarkdown}
-            />
-          </div>
-          <div className="col-12">
-            <button
-              className="btn-save-clinic"
-              onClick={() => this.handleSaveNewClinic()}
-            >
-              Save
-            </button>
+      <>
+        {" "}
+        <div className="manage-clinic-container">
+          <div className="ms-title">Quản lý Phòng khám</div>
+          <div className="add-new-clinic row">
+            <div className="col-6 form-group">
+              <label> Tên Phòng khám </label>
+              <input
+                className="form-control"
+                type="text"
+                value={this.state.name}
+                onChange={(event) => this.handleOnChangeInput(event, "name")}
+              />
+            </div>
+            <div className="col-6 form-group">
+              <label> Ảnh Phòng khám </label>
+              <input
+                className="form-control-file"
+                type="file"
+                onChange={(event) => this.handleOnchangeImage(event)}
+              />
+            </div>
+            <div className="col-6 form-group">
+              <label> Địa chỉ phòng khám </label>
+              <input
+                className="form-control"
+                type="text"
+                value={this.state.address}
+                onChange={(event) => this.handleOnChangeInput(event, "address")}
+              />
+            </div>
+            <div className="col-12">
+              <MdEditor
+                style={{ height: "300px" }}
+                renderHTML={(text) => mdParser.render(text)}
+                onChange={this.handleEditorChange}
+                value={this.state.descriptionMarkdown}
+              />
+            </div>
+            <div className="col-12">
+              <button
+                className="btn-save-clinic"
+                onClick={() => this.handleSaveNewClinic()}
+              >
+                Save
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+        <div className="users-table mt-3 mx-5">
+          <table id="customers">
+            <tbody>
+              <tr>
+                <th>STT</th>
+                <th>Tên Phong kham</th>
+                <th>Dia chi</th>
+                <th>Actions</th>
+              </tr>
+
+              {arrClinic &&
+                arrClinic.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{item.id}</td>
+                      <td>{item.name}</td>
+                      <td>{item.address}</td>
+                      {/* <td>{item.lastName}</td>
+                      <td>{item.address}</td> */}
+                      <td>
+                        <button
+                          className="btn-edit"
+                          // onClick={() => this.handleEditUser(item)}
+                        >
+                          <i className="fas fa-pencil-alt"></i>
+                        </button>
+                        <button
+                          className="btn-delete"
+                          // onClick={() => this.handleDeleteUser(item)}
+                        >
+                          <i className="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+      </>
     );
   }
 }

@@ -7,7 +7,10 @@ import MdEditor from "react-markdown-editor-lite";
 import { CommonUtils } from "../../../utils";
 import { createNewSpecialty } from "../../../services/userService";
 import { toast } from "react-toastify";
-
+import {
+  getAllSpecialty,
+  getAllDetailSpecialtyById,
+} from "../../../services/userService";
 const mdParser = new MarkdownIt();
 
 class ManageSpecialty extends Component {
@@ -18,10 +21,18 @@ class ManageSpecialty extends Component {
       imageBase64: "",
       descriptionHTML: "",
       descriptionMarkdown: "",
+      arrSpecialty: [],
     };
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    let response = await getAllSpecialty();
+    if (response && response.errCode === 0) {
+      this.setState({
+        arrSpecialty: response.data,
+      });
+    }
+  }
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     // if (this.props.language !== prevProps.language) {
@@ -87,46 +98,87 @@ class ManageSpecialty extends Component {
   render() {
     // let { allDays, allAvailableTime } = this.state;
     // let { language } = this.props;
-
+    console.log("check state", this.state);
+    let arrSpecialty = this.state.arrSpecialty;
     return (
-      <div className="manage-specialty-container">
-        <div className="ms-title">Quản lý chuyên khoa</div>
-        <div className="add-new-specialty row">
-          <div className="col-6 form-group">
-            <label> Tên chuyên khoa </label>
-            <input
-              className="form-control"
-              type="text"
-              value={this.state.name}
-              onChange={(event) => this.handleOnChangeInput(event, "name")}
-            />
-          </div>
-          <div className="col-6 form-group">
-            <label> Ảnh chuyên khoa </label>
-            <input
-              className="form-control-file"
-              type="file"
-              onChange={(event) => this.handleOnchangeImage(event)}
-            />
-          </div>
-          <div className="col-12">
-            <MdEditor
-              style={{ height: "300px" }}
-              renderHTML={(text) => mdParser.render(text)}
-              onChange={this.handleEditorChange}
-              value={this.state.descriptionMarkdown}
-            />
-          </div>
-          <div className="col-12">
-            <button
-              className="btn-save-specialty"
-              onClick={() => this.handleSaveNewSpecialty()}
-            >
-              Save
-            </button>
+      <>
+        {" "}
+        <div className="manage-specialty-container">
+          <div className="ms-title">Quản lý chuyên khoa</div>
+          <div className="add-new-specialty row">
+            <div className="col-6 form-group">
+              <label> Tên chuyên khoa </label>
+              <input
+                className="form-control"
+                type="text"
+                value={this.state.name}
+                onChange={(event) => this.handleOnChangeInput(event, "name")}
+              />
+            </div>
+            <div className="col-6 form-group">
+              <label> Ảnh chuyên khoa </label>
+              <input
+                className="form-control-file"
+                type="file"
+                onChange={(event) => this.handleOnchangeImage(event)}
+              />
+            </div>
+            <div className="col-12">
+              <MdEditor
+                style={{ height: "300px" }}
+                renderHTML={(text) => mdParser.render(text)}
+                onChange={this.handleEditorChange}
+                value={this.state.descriptionMarkdown}
+              />
+            </div>
+            <div className="col-12">
+              <button
+                className="btn-save-specialty"
+                onClick={() => this.handleSaveNewSpecialty()}
+              >
+                Save
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+        <div className="users-table mt-3 mx-5">
+          <table id="customers">
+            <tbody>
+              <tr>
+                <th>STT</th>
+                <th>Tên Chuyen khoa</th>
+                <th>Actions</th>
+              </tr>
+
+              {arrSpecialty &&
+                arrSpecialty.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{item.id}</td>
+                      <td>{item.name}</td>
+                      {/* <td>{item.lastName}</td>
+                      <td>{item.address}</td> */}
+                      <td>
+                        <button
+                          className="btn-edit"
+                          // onClick={() => this.handleEditUser(item)}
+                        >
+                          <i className="fas fa-pencil-alt"></i>
+                        </button>
+                        <button
+                          className="btn-delete"
+                          // onClick={() => this.handleDeleteUser(item)}
+                        >
+                          <i className="fas fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+      </>
     );
   }
 }
