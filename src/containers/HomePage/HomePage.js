@@ -21,13 +21,20 @@ class HomePage extends Component {
       slidesToShow: 4,
       slidesToScroll: 2,
     };
+    let settingHandbook = {
+      dots: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+    };
     return (
       <div className="text-center">
         <HomeHeader isShowBanner={true} />
         <Specialty settings={settings} />
         <MedicalFacility settings={settings} />
         <OutStandingDoctor settings={settings} />
-        <Handbook settings={settings} />
+        <Handbook settings={settingHandbook} />
         <About settings={settings} />
         <HomeFooter />
       </div>

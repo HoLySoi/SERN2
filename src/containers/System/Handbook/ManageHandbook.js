@@ -90,10 +90,10 @@ class ManageHandbook extends Component {
 
     return (
       <div className="manage-handbook-container">
-        <div className="ms-title">Quản lý chuyên khoa</div>
+        <div className="ms-title">Quản lý cẩm nang</div>
         <div className="add-new-handbook row">
           <div className="col-6 form-group">
-            <label> Tên chuyên khoa </label>
+            <label> Tên cẩm nang </label>
             <input
               className="form-control"
               type="text"
@@ -102,7 +102,7 @@ class ManageHandbook extends Component {
             />
           </div>
           <div className="col-6 form-group">
-            <label> Ảnh chuyên khoa </label>
+            <label> Ảnh cẩm nang </label>
             <input
               className="form-control-file"
               type="file"
@@ -111,7 +111,7 @@ class ManageHandbook extends Component {
           </div>
           <div className="col-12">
             <MdEditor
-              style={{ height: "300px" }}
+              style={{ height: "600px" }}
               renderHTML={(text) => mdParser.render(text)}
               onChange={this.handleEditorChange}
               value={this.state.descriptionMarkdown}

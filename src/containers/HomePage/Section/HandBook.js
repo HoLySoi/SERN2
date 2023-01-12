@@ -43,7 +43,7 @@ class Handbook extends Component {
         <div className="section-container">
           <div className="section-header">
             <span className="title-section">
-              <FormattedMessage id="homepage.handbook-poplular" />
+              <FormattedMessage id="homepage.handbook" />
             </span>
             <button className="btn-section">
               <FormattedMessage id="homepage.more-infor" />

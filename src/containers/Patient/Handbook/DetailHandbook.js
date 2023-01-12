@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./DetailSpecialty.scss";
+import "./DetailHandbook.scss";
 import HomeHeader from "../../HomePage/HomeHeader";
 import DoctorSchedule from "../Doctor/DoctorSchedule";
 import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
 import ProfileDoctor from "../Doctor/ProfileDoctor";
 import {
-  getAllDetailSpecialtyById,
+  getAllDetailHandbookById,
   getAllCodeService,
 } from "../../../services/userService";
 import _ from "lodash";
 import { LANGUAGES } from "../../../utils";
 
-class DetailSpecialty extends Component {
+class DetailHandbook extends Component {
   constructor(props) {
     super(props);
     this.state = {
       arrDoctorId: [],
-      dataDetailSpecialty: [],
+      dataDetailHandbook: [],
       listProvince: [],
     };
   }
@@ -29,7 +29,7 @@ class DetailSpecialty extends Component {
       this.props.match.params.id
     ) {
       let id = this.props.match.params.id;
-      let res = await getAllDetailSpecialtyById({
+      let res = await getAllDetailHandbookById({
         id: id,
         location: "ALL",
       });
@@ -44,7 +44,7 @@ class DetailSpecialty extends Component {
         let data = res.data;
         let arrDoctorId = [];
         if (data && !_.isEmpty(res.data)) {
-          let arr = data.doctorSpecialty;
+          let arr = data.doctorHandbook;
           if (arr && arr.length > 0) {
             arr.map((item) => {
               arrDoctorId.push(item.doctorId);
@@ -64,7 +64,7 @@ class DetailSpecialty extends Component {
         }
 
         this.setState({
-          dataDetailSpecialty: res.data,
+          dataDetailHandbook: res.data,
           arrDoctorId: arrDoctorId,
           listProvince: dataProvince ? dataProvince : [],
         });
@@ -100,7 +100,7 @@ class DetailSpecialty extends Component {
       let id = this.props.match.params.id;
       let location = event.target.value;
 
-      let res = await getAllDetailSpecialtyById({
+      let res = await getAllDetailHandbookById({
         id: id,
         location: location,
       });
@@ -109,7 +109,7 @@ class DetailSpecialty extends Component {
         let data = res.data;
         let arrDoctorId = [];
         if (data && !_.isEmpty(res.data)) {
-          let arr = data.doctorSpecialty;
+          let arr = data.doctorHandbook;
           if (arr && arr.length > 0) {
             arr.map((item) => {
               arrDoctorId.push(item.doctorId);
@@ -117,7 +117,7 @@ class DetailSpecialty extends Component {
           }
         }
         this.setState({
-          dataDetailSpecialty: res.data,
+          dataDetailHandbook: res.data,
           arrDoctorId: arrDoctorId,
         });
       }
@@ -125,23 +125,23 @@ class DetailSpecialty extends Component {
   };
 
   render() {
-    let { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
+    let { arrDoctorId, dataDetailHandbook, listProvince } = this.state;
     let { language } = this.props;
 
     return (
-      <div className="detail-specialty-container">
+      <div className="detail-handbook-container">
         <HomeHeader />
-        <div className="detail-specialty-body">
-          <div className="description-specialty">
-            {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
+        <div className="detail-handbook-body">
+          <div className="description-handbook">
+            {dataDetailHandbook && !_.isEmpty(dataDetailHandbook) && (
               <div
                 dangerouslySetInnerHTML={{
-                  __html: dataDetailSpecialty.descriptionHTML,
+                  __html: dataDetailHandbook.descriptionHTML,
                 }}
               ></div>
             )}
           </div>
-          <div className="search-sp-doctor">
+          {/* <div className="search-sp-doctor">
             <select onChange={(event) => this.handleOnChangeSelect(event)}>
               {listProvince &&
                 listProvince.length > 0 &&
@@ -153,8 +153,8 @@ class DetailSpecialty extends Component {
                   );
                 })}
             </select>
-          </div>
-          {arrDoctorId &&
+          </div> */}
+          {/* {arrDoctorId &&
             arrDoctorId.length > 0 &&
             arrDoctorId.map((item, index) => {
               return (
@@ -179,7 +179,7 @@ class DetailSpecialty extends Component {
                   </div>
                 </div>
               );
-            })}
+            })} */}
         </div>
       </div>
     );
@@ -195,4 +195,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailSpecialty);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailHandbook);

@@ -51,24 +51,7 @@ class DetailClinic extends Component {
     }
   }
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    // if (this.props.language !== prevProps.language) {
-    //   let allDays = this.getArrDays(this.props.language);
-    //   this.setState({
-    //     allDays: allDays,
-    //   });
-    // }
-    // if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
-    //   let allDays = this.getArrDays(this.props.language);
-    //   let res = await getScheduleDoctorByDate(
-    //     this.props.doctorIdFromParent,
-    //     allDays[0].value
-    //   );
-    //   this.setState({
-    //     allAvailableTime: res.data ? res.data : [],
-    //   });
-    // }
-  }
+  async componentDidUpdate(prevProps, prevState, snapshot) {}
 
   //   handleOnChangeSelect = async (event) => {
   //     if (
