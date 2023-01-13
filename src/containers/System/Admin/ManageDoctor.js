@@ -200,6 +200,20 @@ class ManageDoctor extends Component {
           ? this.state.selectedClinic.value
           : "",
     });
+    this.setState({
+      contentHTML: "",
+      contentMarkdown: "",
+      description: "",
+      hasOldData: false,
+      addressClinic: "",
+      nameClinic: "",
+      note: "",
+      selectedPayment: "",
+      selectedPrice: "",
+      selectedProvince: "",
+      selectedSpecialty: "",
+      selectedClinic: "",
+    });
   };
 
   handleChangeSelect = async (selectedOption) => {
@@ -306,7 +320,7 @@ class ManageDoctor extends Component {
 
   render() {
     let { hasOldData } = this.state;
-    console.log("toan", this.state);
+    // console.log("toan", this.state);
     return (
       <div className="manage-doctor-container m-3">
         <div className="manage-doctor-title title text-center my-4">
