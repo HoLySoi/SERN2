@@ -11,6 +11,7 @@ import {
   getAllHandbook,
   getAllDetailHandbookById,
   deleteHandbook,
+  editHandbook,
 } from "../../../services/userService";
 const mdParser = new MarkdownIt();
 
@@ -18,11 +19,13 @@ class ManageHandbook extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       name: "",
       imageBase64: "",
       descriptionHTML: "",
       descriptionMarkdown: "",
       arrHandbook: [],
+      isEditHandbook: false,
     };
   }
 
@@ -37,27 +40,9 @@ class ManageHandbook extends Component {
         arrHandbook: response.data,
       });
     }
-    // console.log("check res", response);
   };
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    // if (this.props.language !== prevProps.language) {
-    //   let allDays = this.getArrDays(this.props.language);
-    //   this.setState({
-    //     allDays: allDays,
-    //   });
-    // }
-    // if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
-    //   let allDays = this.getArrDays(this.props.language);
-    //   let res = await getScheduleDoctorByDate(
-    //     this.props.doctorIdFromParent,
-    //     allDays[0].value
-    //   );
-    //   this.setState({
-    //     allAvailableTime: res.data ? res.data : [],
-    //   });
-    // }
-  }
+  async componentDidUpdate(prevProps, prevState, snapshot) {}
 
   handleOnChangeInput = (event, id) => {
     let stateCopy = { ...this.State };
@@ -98,7 +83,6 @@ class ManageHandbook extends Component {
       });
     } else {
       toast.error("Something wrongs....");
-      console.log("check res: ", res);
     }
   };
 
@@ -115,10 +99,45 @@ class ManageHandbook extends Component {
       console.log(e);
     }
   };
+
+  handleEditHandbook = (handbook) => {
+    console.log("check edit handbook", handbook);
+    this.setState({
+      isEditHandbook: true,
+      id: handbook.id,
+      name: handbook.name,
+      image: handbook.image,
+      descriptionHTML: handbook.descriptionHTML,
+      descriptionMarkdown: handbook.descriptionMarkdown,
+    });
+  };
+
+  doEditHandbook = async () => {
+    console.log("check state doEditHandbook", this.state);
+    try {
+      let res = await editHandbook(this.state);
+
+      if (res && res.errCode === 0) {
+        toast.success("Edit handbook succeeds!");
+        await this.getAllHandbookFromReact();
+        this.setState({
+          name: "",
+          imageBase64: "",
+          descriptionHTML: "",
+          descriptionMarkdown: "",
+          isEditHandbook: false,
+        });
+      } else {
+        toast.error("Something wrongs....");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   render() {
     // let { allDays, allAvailableTime } = this.state;
     // let { language } = this.props;
-    console.log("check state", this.state);
+
     let arrHandbook = this.state.arrHandbook;
 
     return (
@@ -152,10 +171,19 @@ class ManageHandbook extends Component {
                 value={this.state.descriptionMarkdown}
               />
             </div>
+
             <div className="col-12">
               <button
-                className="btn-save-handbook"
-                onClick={() => this.handleSaveNewHandbook()}
+                className={
+                  this.state.isEditHandbook === false
+                    ? "btn-save-handbook"
+                    : "btn-edit-handbook"
+                }
+                onClick={
+                  this.state.isEditHandbook === false
+                    ? () => this.handleSaveNewHandbook()
+                    : () => this.doEditHandbook()
+                }
               >
                 Save
               </button>
@@ -183,7 +211,7 @@ class ManageHandbook extends Component {
                       <td>
                         <button
                           className="btn-edit"
-                          // onClick={() => this.handleEditHandbook(item)}
+                          onClick={() => this.handleEditHandbook(item)}
                         >
                           <i className="fas fa-pencil-alt"></i>
                         </button>

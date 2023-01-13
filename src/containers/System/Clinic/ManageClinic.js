@@ -11,6 +11,7 @@ import {
   getAllClinic,
   getAllDetailClinicById,
   deleteClinic,
+  editClinic,
 } from "../../../services/userService";
 const mdParser = new MarkdownIt();
 
@@ -18,12 +19,14 @@ class ManageClinic extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       name: "",
       address: "",
       imageBase64: "",
       descriptionHTML: "",
       descriptionMarkdown: "",
       arrClinic: [],
+      isEditClinic: false,
     };
   }
 
@@ -117,6 +120,43 @@ class ManageClinic extends Component {
     }
   };
 
+  handleEditClinic = (clinic) => {
+    console.log("check edit clinic", clinic);
+    this.setState({
+      isEditClinic: true,
+      id: clinic.id,
+      name: clinic.name,
+      address: clinic.address,
+      image: clinic.image,
+      descriptionHTML: clinic.descriptionHTML,
+      descriptionMarkdown: clinic.descriptionMarkdown,
+    });
+  };
+
+  doEditClinic = async () => {
+    console.log("check state doEditClinic", this.state);
+    try {
+      let res = await editClinic(this.state);
+
+      if (res && res.errCode === 0) {
+        toast.success("Edit clinic succeeds!");
+        await this.getAllClinicFromReact();
+        this.setState({
+          name: "",
+          imageBase64: "",
+          address: "",
+          descriptionHTML: "",
+          descriptionMarkdown: "",
+          isEditClinic: false,
+        });
+      } else {
+        toast.error("Something wrongs....");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   render() {
     // let { allDays, allAvailableTime } = this.state;
     // let { language } = this.props;
@@ -164,8 +204,16 @@ class ManageClinic extends Component {
             </div>
             <div className="col-12">
               <button
-                className="btn-save-clinic"
-                onClick={() => this.handleSaveNewClinic()}
+                className={
+                  this.state.isEditClinic === false
+                    ? "btn-save-clinic"
+                    : "btn-edit-clinic"
+                }
+                onClick={
+                  this.state.isEditClinic === false
+                    ? () => this.handleSaveNewClinic()
+                    : () => this.doEditClinic()
+                }
               >
                 Save
               </button>
@@ -195,7 +243,7 @@ class ManageClinic extends Component {
                       <td>
                         <button
                           className="btn-edit"
-                          // onClick={() => this.handleEditUser(item)}
+                          onClick={() => this.handleEditClinic(item)}
                         >
                           <i className="fas fa-pencil-alt"></i>
                         </button>

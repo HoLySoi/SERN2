@@ -2,8 +2,8 @@
 
 .toast-container {
   .toast-item {
-    white-space: pre-wrap;
-    box-shadow: 0 0 5px 5px $box-shadow-color;
+    white-space       : pre-wrap;
+    box-shadow        : 0 0 5px 5px $box-shadow-color;
     -webkit-box-shadow: 0 0 5px 5px $box-shadow-color;
 
     &.Toastify__toast--success {
@@ -23,44 +23,45 @@
     }
 
     .toast-close {
-      position: absolute;
-      right: 10px;
-      top:10px;
-      color: $common-text-color;
-      font-size: $base-size;
-      padding: 0;
-      cursor: pointer;
-      background: transparent;
-      border: 0;
+      position          : absolute;
+      right             : 10px;
+      top               : 10px;
+      color             : $common-text-color;
+      font-size         : $base-size;
+      padding           : 0;
+      cursor            : pointer;
+      background        : transparent;
+      border            : 0;
       -webkit-appearance: none;
-      transition: opacity 0.2s ease-out;
+      transition        : opacity 0.2s ease-out;
     }
 
     .toast-item-body {
-      color: $common-text-color;
+      color  : $common-text-color;
       display: block;
-      flex: none;
-      width: 100%;
+      flex   : none;
+      width  : 100%;
 
       .toast-title {
         font-weight: bold;
-        font-size: $base-size;
-        margin: 0 20px 5px 0;
+        font-size  : $base-size;
+        margin     : 0 20px 5px 0;
 
         .fixed-scroll-bar {
           height: 50px;
         }
+
         .date {
-          float: right;
-          font-size: $base-size - 2px;
+          float         : right;
+          font-size     : $base-size - 2px;
           vertical-align: middle;
-          margin-right: 5px;
-          margin-bottom: 0;
-          padding: 2px 5px;
+          margin-right  : 5px;
+          margin-bottom : 0;
+          padding       : 2px 5px;
         }
 
         i {
-          position: relative;
+          position    : relative;
           margin-right: 3px;
         }
       }

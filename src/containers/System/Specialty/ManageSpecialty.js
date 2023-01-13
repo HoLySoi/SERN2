@@ -11,6 +11,7 @@ import {
   getAllSpecialty,
   getAllDetailSpecialtyById,
   deleteSpecialty,
+  editSpecialty,
 } from "../../../services/userService";
 const mdParser = new MarkdownIt();
 
@@ -18,11 +19,13 @@ class ManageSpecialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       name: "",
       imageBase64: "",
       descriptionHTML: "",
       descriptionMarkdown: "",
       arrSpecialty: [],
+      isEditSpecialty: false,
     };
   }
 
@@ -113,6 +116,42 @@ class ManageSpecialty extends Component {
       console.log(e);
     }
   };
+
+  handleEditSpecialty = (specialty) => {
+    console.log("check edit specialty", specialty);
+    this.setState({
+      isEditSpecialty: true,
+      id: specialty.id,
+      name: specialty.name,
+      image: specialty.image,
+      descriptionHTML: specialty.descriptionHTML,
+      descriptionMarkdown: specialty.descriptionMarkdown,
+    });
+  };
+
+  doEditSpecialty = async () => {
+    console.log("check state doEditSpecialty", this.state);
+    try {
+      let res = await editSpecialty(this.state);
+
+      if (res && res.errCode === 0) {
+        toast.success("Edit specialty succeeds!");
+        await this.getAllSpecialtyFromReact();
+        this.setState({
+          name: "",
+          imageBase64: "",
+          descriptionHTML: "",
+          descriptionMarkdown: "",
+          isEditSpecialty: false,
+        });
+      } else {
+        toast.error("Something wrongs....");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   render() {
     // let { allDays, allAvailableTime } = this.state;
     // let { language } = this.props;
@@ -151,8 +190,16 @@ class ManageSpecialty extends Component {
             </div>
             <div className="col-12">
               <button
-                className="btn-save-specialty"
-                onClick={() => this.handleSaveNewSpecialty()}
+                className={
+                  this.state.isEditSpecialty === false
+                    ? "btn-save-specialty"
+                    : "btn-edit-specialty"
+                }
+                onClick={
+                  this.state.isEditSpecialty === false
+                    ? () => this.handleSaveNewSpecialty()
+                    : () => this.doEditSpecialty()
+                }
               >
                 Save
               </button>
@@ -180,7 +227,7 @@ class ManageSpecialty extends Component {
                       <td>
                         <button
                           className="btn-edit"
-                          // onClick={() => this.handleEditUser(item)}
+                          onClick={() => this.handleEditSpecialty(item)}
                         >
                           <i className="fas fa-pencil-alt"></i>
                         </button>

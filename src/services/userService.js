@@ -117,6 +117,16 @@ const deleteHandbook = (Id) => {
   });
 };
 
+const editHandbook = (inputData) => {
+  return axios.put("/api/edit-handbook", inputData);
+};
+const editSpecialty = (inputData) => {
+  return axios.put("/api/edit-specialty", inputData);
+};
+const editClinic = (inputData) => {
+  return axios.put("/api/edit-clinic", inputData);
+};
+
 const createNewClinic = (data) => {
   return axios.post(`/api/create-new-clinic`, data);
 };
@@ -178,6 +188,9 @@ export {
   getAllHandbook,
   getAllDetailHandbookById,
   deleteHandbook,
+  editHandbook,
+  editSpecialty,
+  editClinic,
   deleteSpecialty,
   deleteClinic,
 };
