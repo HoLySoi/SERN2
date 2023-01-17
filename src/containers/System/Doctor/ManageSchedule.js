@@ -65,6 +65,7 @@ class ManageSchedule extends Component {
 
   handleChangeSelect = async (selectedOption) => {
     this.setState({ selectedDoctor: selectedOption });
+    console.log("checkkk", this.state);
   };
   handleOnChangeDatePicker = (date) => {
     this.setState({ currentDate: date[0] });
@@ -145,7 +146,7 @@ class ManageSchedule extends Component {
     return (
       <div className="manage-schedule-container">
         <div className="m-s-title">
-          <FormattedMessage id="manage-schedule-title" />
+          <FormattedMessage id="manage-schedule.title" />
         </div>
         <div className="container">
           <div className="row">
