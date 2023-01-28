@@ -1,4 +1,7 @@
 {
+  "login": {
+    "login": "LOGIN"
+  },
   "homeheader": {
     "speciality": "Medical specialty",
     "searchdoctor": "Find a doctor by specialty",
@@ -53,7 +56,9 @@
     "role": "Role",
     "image": "Avatar",
     "save": "Save user",
-    "edit": "Edit user"
+    "edit": "Edit user",
+    "action": "Action",
+    "manage-user": "Manage Users"
   },
   "homepage": {
     "outstanding-doctor": "Last week's featured doctor",
@@ -67,6 +72,45 @@
     "choose-doctor": "Choose doctor",
     "choose-date": "Choose date",
     "save": "Save Infor"
+  },
+  "manage-patient": {
+    "manage": "MANAGEMENT OF PATIENTS CHECKOUT",
+    "choose-date": "Choose date",
+    "name": "Name",
+    "number": "Number",
+    "address": "Address",
+    "gender": "Gender",
+    "time": "Time",
+    "action": "Action",
+    "confirm": "CONFIRM",
+    "no-data": "NO DATA"
+  },
+  "clinic": {
+    "manage-clinic": "MANAGE CLINICS",
+    "clinic-name": "Name of clinic",
+    "image": "Image",
+    "clinic-address": "Address of clinic",
+    "list-clinic": "LIST OF CLINICS",
+    "number": "Number",
+    "action": "Action"
+  },
+  "specialty": {
+    "manage-specialty": "MANAGE SPECIALTY",
+    "specialty-name": "Name of specialty",
+    "image": "Image",
+    "specialty-address": "Address of specialty",
+    "list-specialty": "LIST OF SPECIALTY",
+    "number": "Number",
+    "action": "Action"
+  },
+  "handbook": {
+    "manage-handbook": "MANAGE HANDBOOKS",
+    "handbook-name": "Name of handbook",
+    "image": "Image",
+    "handbook-address": "Address of handbook",
+    "list-handbook": "LIST OF HANDBOOKS",
+    "number": "Number",
+    "action": "Action"
   },
   "patient": {
     "detail-doctor": {

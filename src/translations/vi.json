@@ -1,4 +1,7 @@
 {
+  "login": {
+    "login": "ĐĂNG NHẬP"
+  },
   "homeheader": {
     "speciality": "Chuyên khoa",
     "searchdoctor": "Tìm bác sĩ theo chuyên khoa",
@@ -54,7 +57,9 @@
     "role": "Vai trò",
     "image": "Ảnh đại diện",
     "save": "Lưu người dùng",
-    "edit": "Lưu thay đổi"
+    "edit": "Lưu thay đổi",
+    "action": "Thao tác",
+    "manage-user": "Quản lý người dùng"
   },
   "homepage": {
     "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
@@ -69,6 +74,45 @@
     "choose-date": "Chọn ngày",
     "save": "Lưu thông tin"
   },
+  "manage-patient": {
+    "manage": "QUẢN LÝ BỆNH NHÂN KHÁM BỆNH",
+    "choose-date": "Chọn ngày khám",
+    "name": "Tên",
+    "number": "STT",
+    "address": "Địa chỉ",
+    "gender": "Giới tính",
+    "time": "Thời gian",
+    "confirm": "XÁC NHẬN",
+    "action": "Thao tác",
+    "no-data": "KHÔNG CÓ DỮ LIỆU"
+  },
+  "clinic": {
+    "manage-clinic": "QUẢN LÝ PHÒNG KHÁM",
+    "clinic-name": "Tên phòng khám",
+    "image": "Ảnh phòng khám",
+    "clinic-address": "Địa chỉ phòng khám",
+    "list-clinic": "DANH SÁCH PHÒNG KHÁM",
+    "number": "STT",
+    "action": "Thao tác"
+  },
+  "specialty": {
+    "manage-specialty": "QUẢN LÝ CHUYÊN KHOA",
+    "specialty-name": "Tên chuyên khoa",
+    "image": "Ảnh chuyên khoa",
+    "specialty-address": "Address of specialty",
+    "list-specialty": "DANH SÁCH CHUYÊN KHOA",
+    "number": "STT",
+    "action": "Thao tác"
+  },
+  "handbook": {
+    "manage-handbook": "QUẢN LÝ CẨM NANG",
+    "handbook-name": "Tên cẩm nang",
+    "image": "Ảnh cẩm nang",
+    "list-handbook": "DANH SÁCH CẨM NANG",
+    "number": "STT",
+    "action": "Thao tác"
+  },
+
   "patient": {
     "detail-doctor": {
       "schedule": "Lịch khám",

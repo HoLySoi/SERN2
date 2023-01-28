@@ -1,31 +1,31 @@
 .manage-clinic-container {
     padding: 0 15px;
 
-    .ms-title {
-        text-align    : center;
-        margin        : 10px 0;
-        text-transform: uppercase;
-        font-size     : 17px;
-        font-weight   : 600;
-    }
+    // .ms-title {
+    //     text-align    : center;
+    //     margin        : 10px 0;
+    //     text-transform: uppercase;
+    //     font-size     : 17px;
+    //     font-weight   : 600;
+    // }
 
     .add-new-clinic {
         .btn-save-clinic {
             border       : none;
-            background   : orange;
             padding      : 8px 5px;
             min-width    : 75px;
             border-radius: 3px;
             margin       : 15px 0;
+            font-weight  : 700;
         }
 
         .btn-edit-clinic {
             border       : none;
-            background   : blue;
             padding      : 8px 5px;
             min-width    : 75px;
             border-radius: 3px;
             margin       : 15px 0;
+            font-weight  : 700;
         }
     }
 }

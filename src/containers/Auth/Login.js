@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-
 import * as actions from "../../store/actions";
 import { KeyCodeUtils, LanguageUtils } from "../../utils";
-
 import userIcon from "../../../src/assets/images/user.svg";
 import passIcon from "../../../src/assets/images/pass.svg";
 import "./Login.scss";
@@ -218,14 +216,14 @@ class Login extends Component {
             </div>
 
             <div className="col-12">
-              <span className="forgot-password">Quên mật khẩu</span>
+              <span className="forgot-password">Forgot password</span>
             </div>
             <div className="col-12 text-canter mt-3">
-              <span className="forgot-password">Hoặc đăng nhập bằng:</span>
+              <span className="or-login-with">Or login with:</span>
             </div>
             <div className="col-12 social-login">
-              <i className="fab fa-google-plus-g google"></i>
-              <i className="fab fa-facebook-f facebook"></i>
+              <i className="fab fa-google-plus-g google mx-1"></i>
+              <i className="fab fa-facebook-f facebook mx-1"></i>
             </div>
           </div>
         </div>

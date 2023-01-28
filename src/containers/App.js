@@ -70,7 +70,7 @@ class App extends Component {
                   <Route
                     path={path.DETAIL_SPECIALTY}
                     component={DetailSpecialty}
-                  />{" "}
+                  />
                   <Route
                     path={path.DETAIL_HANDBOOK}
                     component={DetailHandbook}

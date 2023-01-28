@@ -142,12 +142,17 @@ class ManageHandbook extends Component {
 
     return (
       <>
-        {" "}
         <div className="manage-handbook-container">
-          <div className="ms-title">Quản lý cẩm nang</div>
+          <div className="ms-title title">
+            {" "}
+            <FormattedMessage id="handbook.manage-handbook" />
+          </div>
           <div className="add-new-handbook row">
             <div className="col-6 form-group">
-              <label> Tên cẩm nang </label>
+              <label>
+                {" "}
+                <FormattedMessage id="handbook.handbook-name" />
+              </label>
               <input
                 className="form-control"
                 type="text"
@@ -156,7 +161,10 @@ class ManageHandbook extends Component {
               />
             </div>
             <div className="col-6 form-group">
-              <label> Ảnh cẩm nang </label>
+              <label>
+                {" "}
+                <FormattedMessage id="handbook.image" />
+              </label>
               <input
                 className="form-control-file"
                 type="file"
@@ -176,8 +184,8 @@ class ManageHandbook extends Component {
               <button
                 className={
                   this.state.isEditHandbook === false
-                    ? "btn-save-handbook"
-                    : "btn-edit-handbook"
+                    ? "btn-save-handbook btn-primary"
+                    : "btn-edit-handbook  btn-warning"
                 }
                 onClick={
                   this.state.isEditHandbook === false
@@ -190,14 +198,26 @@ class ManageHandbook extends Component {
             </div>
           </div>
         </div>
-        <div className="ms-title mt-3">Danh sách cẩm nang</div>
+        <div className="ms-title title mt-3">
+          {" "}
+          <FormattedMessage id="handbook.list-handbook" />
+        </div>
         <div className="users-table mt-3 mx-5 mb-5">
           <table id="customers">
             <tbody>
               <tr>
-                <th>STT</th>
-                <th>Tên Cẩm nang</th>
-                <th>Actions</th>
+                <th>
+                  {" "}
+                  <FormattedMessage id="handbook.number" />
+                </th>
+                <th>
+                  {" "}
+                  <FormattedMessage id="handbook.handbook-name" />
+                </th>
+                <th>
+                  {" "}
+                  <FormattedMessage id="handbook.action" />
+                </th>
               </tr>
 
               {arrHandbook &&

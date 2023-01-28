@@ -164,12 +164,17 @@ class ManageClinic extends Component {
     let arrClinic = this.state.arrClinic;
     return (
       <>
-        {" "}
         <div className="manage-clinic-container">
-          <div className="ms-title">Quản lý Phòng khám</div>
+          <div className="ms-title title">
+            {" "}
+            <FormattedMessage id="clinic.manage-clinic" />
+          </div>
           <div className="add-new-clinic row">
             <div className="col-6 form-group">
-              <label> Tên Phòng khám </label>
+              <label>
+                {" "}
+                <FormattedMessage id="clinic.clinic-name" />
+              </label>
               <input
                 className="form-control"
                 type="text"
@@ -178,7 +183,10 @@ class ManageClinic extends Component {
               />
             </div>
             <div className="col-6 form-group">
-              <label> Ảnh Phòng khám </label>
+              <label>
+                {" "}
+                <FormattedMessage id="clinic.image" />
+              </label>
               <input
                 className="form-control-file"
                 type="file"
@@ -186,7 +194,10 @@ class ManageClinic extends Component {
               />
             </div>
             <div className="col-6 form-group">
-              <label> Địa chỉ phòng khám </label>
+              <label>
+                {" "}
+                <FormattedMessage id="clinic.clinic-address" />
+              </label>
               <input
                 className="form-control"
                 type="text"
@@ -206,8 +217,8 @@ class ManageClinic extends Component {
               <button
                 className={
                   this.state.isEditClinic === false
-                    ? "btn-save-clinic"
-                    : "btn-edit-clinic"
+                    ? "btn-save-clinic btn-primary"
+                    : "btn-edit-clinic btn-warning"
                 }
                 onClick={
                   this.state.isEditClinic === false
@@ -220,15 +231,30 @@ class ManageClinic extends Component {
             </div>
           </div>
         </div>
-        <div className="ms-title mt-3">Danh sách Phòng khám</div>
+        <div className="ms-title title mt-3">
+          {" "}
+          <FormattedMessage id="clinic.list-clinic" />
+        </div>
         <div className="users-table mt-3 mx-5 mb-5">
           <table id="customers">
             <tbody>
               <tr>
-                <th>STT</th>
-                <th>Tên Phong kham</th>
-                <th>Dia chi</th>
-                <th>Actions</th>
+                <th>
+                  {" "}
+                  <FormattedMessage id="clinic.number" />
+                </th>
+                <th>
+                  {" "}
+                  <FormattedMessage id="clinic.clinic-name" />
+                </th>
+                <th>
+                  {" "}
+                  <FormattedMessage id="clinic.clinic-address" />
+                </th>
+                <th>
+                  {" "}
+                  <FormattedMessage id="clinic.action" />
+                </th>
               </tr>
 
               {arrClinic &&
@@ -242,7 +268,7 @@ class ManageClinic extends Component {
                       <td>{item.address}</td> */}
                       <td>
                         <button
-                          className="btn-edit"
+                          className="btn-edit "
                           onClick={() => this.handleEditClinic(item)}
                         >
                           <i className="fas fa-pencil-alt"></i>

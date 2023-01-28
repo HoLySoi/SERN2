@@ -112,7 +112,7 @@ class BookingModal extends Component {
       birthday: date,
       selectedGender: this.state.selectedGender.value,
       doctorId: this.state.doctorId,
-      timeType: this.props.timeType,
+      timeType: this.state.timeType,
       language: this.props.language,
       timeString: timeString,
       doctorName: doctorName,
@@ -178,7 +178,6 @@ class BookingModal extends Component {
         spinner
         text="Loading..."
       >
-        {" "}
         <Modal
           isOpen={isOpenModal}
           className={"booking-modal-container"}

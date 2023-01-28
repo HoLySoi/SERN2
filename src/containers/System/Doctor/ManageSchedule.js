@@ -145,7 +145,7 @@ class ManageSchedule extends Component {
     console.log("check state", this.state);
     return (
       <div className="manage-schedule-container">
-        <div className="m-s-title">
+        <div className="m-s-title title text-center my-4">
           <FormattedMessage id="manage-schedule.title" />
         </div>
         <div className="container">

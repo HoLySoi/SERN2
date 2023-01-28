@@ -159,12 +159,17 @@ class ManageSpecialty extends Component {
     let arrSpecialty = this.state.arrSpecialty;
     return (
       <>
-        {" "}
         <div className="manage-specialty-container">
-          <div className="ms-title">Quản lý chuyên khoa</div>
+          <div className="ms-title title">
+            {" "}
+            <FormattedMessage id="specialty.manage-specialty" />
+          </div>
           <div className="add-new-specialty row">
             <div className="col-6 form-group">
-              <label> Tên chuyên khoa </label>
+              <label>
+                {" "}
+                <FormattedMessage id="specialty.specialty-name" />
+              </label>
               <input
                 className="form-control"
                 type="text"
@@ -173,7 +178,10 @@ class ManageSpecialty extends Component {
               />
             </div>
             <div className="col-6 form-group">
-              <label> Ảnh chuyên khoa </label>
+              <label>
+                {" "}
+                <FormattedMessage id="specialty.image" />
+              </label>
               <input
                 className="form-control-file"
                 type="file"
@@ -192,8 +200,8 @@ class ManageSpecialty extends Component {
               <button
                 className={
                   this.state.isEditSpecialty === false
-                    ? "btn-save-specialty"
-                    : "btn-edit-specialty"
+                    ? "btn-save-specialty  btn-primary"
+                    : "btn-edit-specialty btn-warning"
                 }
                 onClick={
                   this.state.isEditSpecialty === false
@@ -206,14 +214,26 @@ class ManageSpecialty extends Component {
             </div>
           </div>
         </div>
-        <div className="ms-title mt-3">Danh sách Chuyên khoa</div>
+        <div className="ms-title title mt-3">
+          {" "}
+          <FormattedMessage id="specialty.list-specialty" />
+        </div>
         <div className="users-table mt-3 mx-5 mb-5">
           <table id="customers">
             <tbody>
               <tr>
-                <th>STT</th>
-                <th>Tên Chuyen khoa</th>
-                <th>Actions</th>
+                <th>
+                  {" "}
+                  <FormattedMessage id="specialty.number" />
+                </th>
+                <th>
+                  {" "}
+                  <FormattedMessage id="specialty.specialty-name" />
+                </th>
+                <th>
+                  {" "}
+                  <FormattedMessage id="specialty.action" />
+                </th>
               </tr>
 
               {arrSpecialty &&

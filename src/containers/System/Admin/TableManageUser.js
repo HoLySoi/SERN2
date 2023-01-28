@@ -52,17 +52,27 @@ class TableManageUser extends Component {
     let arrUsers = this.state.usersRedux;
     return (
       <div className="users-container">
-        <div className="title text-center"> Manage Users</div>
+        <div className="title text-center">
+          <FormattedMessage id="manage-user.manage-user" />
+        </div>
 
         <div className="users-table my-3 mx-1">
           <table id="TableManageUser">
             <tbody>
               <tr>
                 <th>Email</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Address</th>
-                <th>Actions</th>
+                <th>
+                  <FormattedMessage id="manage-user.first-name" />
+                </th>
+                <th>
+                  <FormattedMessage id="manage-user.last-name" />
+                </th>
+                <th>
+                  <FormattedMessage id="manage-user.address" />
+                </th>
+                <th>
+                  <FormattedMessage id="manage-user.action" />
+                </th>
               </tr>
 
               {arrUsers &&
