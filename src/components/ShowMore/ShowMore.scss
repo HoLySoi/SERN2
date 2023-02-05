@@ -1,0 +1,124 @@
+.showMore {
+  position  : fixed;
+  top       : 0;
+  left      : 0;
+  width     : 100%;
+  height    : 100vh;
+  background: #fff;
+  overflow-y: scroll;
+  z-index   : 999;
+
+  >.input-search {
+    position  : sticky;
+    width     : 100%;
+    left      : 0;
+    background: #f5f5f5;
+    top       : 50px;
+    height    : 50px;
+    padding   : 10px 15px;
+    z-index   : 1;
+
+    input {
+      width        : 100%;
+      height       : 30px;
+      padding      : 10px 15px;
+      background   : rgba(255, 255, 255, 0.7);
+      width        : 100%;
+      border       : 1px solid #ccc;
+      border-radius: 20px;
+      outline      : none
+    }
+  }
+
+  >h3 {
+    text-align : left;
+    padding    : 10px 15px;
+    font-size  : 14px;
+    margin     : 0;
+    font-weight: 600;
+  }
+
+}
+
+.showMore-header {
+  position    : sticky;
+  background  : #fff;
+  width       : 100%;
+  height      : 50px;
+  top         : 0;
+  left        : 0;
+  padding-left: 0px;
+  box-shadow  : 1px 2px 4px rgb(0, 0, 0);
+  z-index     : 2;
+  display     : flex;
+  align-items : center;
+
+  i {
+    cursor : pointer;
+    height : 100%;
+    padding: 18px 0;
+    width  : 50px;
+
+    &:hover {
+      background: ghostwhite;
+    }
+  }
+
+  h2 {
+    font-size: 20px;
+    margin   : 0;
+  }
+}
+
+.show-more-lineItem {
+  display      : flex;
+  align-items  : center;
+  padding      : 15px;
+  border-bottom: 1px solid #eee;
+  cursor       : pointer;
+
+  &:hover {
+    background: ghostwhite;
+  }
+
+  .doctor-img {
+    height       : 50px;
+    width        : 50px;
+    border-radius: 50%;
+    margin-right : 10px;
+  }
+
+  .clinic-img,
+  .specialty-img {
+    height      : 50px;
+    width       : 100px;
+    margin-right: 10px;
+  }
+
+  .specialty-img {
+    height: 67px;
+  }
+
+  .lineItem-text {
+    display       : flex;
+    flex-direction: column;
+    gap           : 5px;
+  }
+
+  h3,
+  h4 {
+    width     : 100%;
+    margin    : 0;
+    padding   : 0;
+    text-align: left;
+    color     : #666;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+
+  h4 {
+    font-size: 12px;
+  }
+}

@@ -8,7 +8,7 @@ const initialState = {
   users: [],
   allDoctors: [],
   allScheduleTime: [],
-
+  topDoctors: [],
   allRequiredDoctorInfor: [],
 };
 

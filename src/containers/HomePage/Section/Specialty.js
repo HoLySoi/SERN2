@@ -5,12 +5,15 @@ import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import { getAllSpecialty } from "../../../services/userService";
 import { withRouter } from "react-router";
+import ShowMore from "../../../components/ShowMore/ShowMore";
 
 class Specialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dataSpecialty: [],
+      showMoreSpecialty: false,
+      specialties: [],
     };
   }
 
@@ -36,8 +39,35 @@ class Specialty extends Component {
     }
   };
 
+  handleShowMoreSpecialty = async () => {
+    let res = await getAllSpecialty(10, 0, "");
+    if (res && res.errCode === 0) {
+      this.setState({
+        showMoreSpecialty: true,
+        specialties: res.data ? res.data : [],
+      });
+    }
+  };
+
+  handleCloseShowMore = () => {
+    this.setState({
+      showMoreSpecialty: false,
+    });
+  };
+
+  handleFilterSearch = async (value) => {
+    let res = await getAllSpecialty(10, 0, value);
+    if (res && res.errCode === 0) {
+      this.setState({
+        showMoreSpecialty: true,
+        specialties: res.data ? res.data : [],
+      });
+    }
+  };
+
   render() {
     let { dataSpecialty } = this.state;
+    let { language } = this.props;
     return (
       <div className="section-share section-specialty">
         <div className="section-container">
@@ -45,9 +75,23 @@ class Specialty extends Component {
             <span className="title-section">
               <FormattedMessage id="homepage.specialty-poplular" />
             </span>
-            <button className="btn-section">
+            <button
+              className="btn-section"
+              onClick={this.handleShowMoreSpecialty}
+            >
               <FormattedMessage id="homepage.more-infor" />
             </button>
+            {this.state.showMoreSpecialty && (
+              <ShowMore
+                title={<FormattedMessage id="show-more.specialty" />}
+                onClose={this.handleCloseShowMore}
+                data={this.state.specialties}
+                type="specialty"
+                language={language}
+                onClick={this.handleViewDetailSpecialty}
+                onSubmit={this.handleFilterSearch}
+              />
+            )}
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>

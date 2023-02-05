@@ -24,7 +24,7 @@ class ManageSchedule extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchAllDoctors();
+    this.props.fetchAllDoctorsSchedule(10, 0, "");
     this.props.fetchAllScheduleTime();
   }
 
@@ -64,8 +64,24 @@ class ManageSchedule extends Component {
   };
 
   handleChangeSelect = async (selectedOption) => {
+    const { doctorData: doctorsSchedule } = this.props.allDoctors.filter(
+      (doctor) => doctor.id === selectedOption.value
+    )[0];
+    const currentRangeTime = this.state.rangeTime;
+    const rangeTime = currentRangeTime.map((item) => {
+      const filter = doctorsSchedule.filter((schedule) => {
+        return (
+          schedule.timeType === item.keyMap &&
+          schedule.date === this.state.currentDate // chưa so sánh được do kiểu dữ liệu trả date về là string.
+        );
+      });
+      if (filter.length) {
+        item.isSelected = true;
+        return item;
+      }
+      return item;
+    });
     this.setState({ selectedDoctor: selectedOption });
-    console.log("checkkk", this.state);
   };
   handleOnChangeDatePicker = (date) => {
     this.setState({ currentDate: date[0] });
@@ -218,7 +234,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
+    fetchAllDoctorsSchedule: (limit, offset, filter) =>
+      dispatch(actions.fetchAllDoctorsSchedule(limit, offset, filter)),
     fetchAllScheduleTime: () => dispatch(actions.fetchAllScheduleTime()),
   };
 };

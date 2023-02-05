@@ -5,12 +5,16 @@ import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import { getAllClinic } from "../../../services/userService";
 import { withRouter } from "react-router";
+import ShowMore from "../../../components/ShowMore/ShowMore";
+import * as actions from "../../../store/actions";
 
 class MedicalFacility extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dataClinics: [],
+      showMoreClinics: false,
+      clinics: [],
     };
   }
 
@@ -36,8 +40,35 @@ class MedicalFacility extends Component {
     }
   };
 
+  handleShowMoreClinics = async () => {
+    let res = await getAllClinic(10, 0, "");
+    if (res && res.errCode === 0) {
+      this.setState({
+        showMoreClinics: true,
+        clinics: res.data ? res.data : [],
+      });
+    }
+  };
+
+  handleCloseShowMore = () => {
+    this.setState({
+      showMoreClinics: false,
+    });
+  };
+
+  handleFilterSearch = async (value = "") => {
+    let res = await getAllClinic(10, 0, value);
+    if (res && res.errCode === 0) {
+      this.setState({
+        showMoreClinics: true,
+        clinics: res.data ? res.data : [],
+      });
+    }
+  };
+
   render() {
     let { dataClinic } = this.state;
+    let { language } = this.props;
     return (
       <div className="section-share section-medical-facility">
         <div className="section-container">
@@ -45,9 +76,26 @@ class MedicalFacility extends Component {
             <span className="title-section">
               <FormattedMessage id="homepage.clinic-poplular" />
             </span>
-            <button className="btn-section">
+            <button
+              className="btn-section"
+              onClick={this.handleShowMoreClinics}
+            >
               <FormattedMessage id="homepage.more-infor" />
             </button>
+            {this.state.showMoreClinics && (
+              <ShowMore
+                title={<FormattedMessage id="show-more.clinic" />}
+                onClose={this.handleCloseShowMore}
+                data={this.state.clinics}
+                subTitle={
+                  <FormattedMessage id="show-more.outstanding-clinic" />
+                }
+                type="clinic"
+                language={language}
+                onClick={this.handleViewDetailClinic}
+                onSubmit={this.handleFilterSearch}
+              />
+            )}
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
@@ -83,7 +131,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {};
 };
 

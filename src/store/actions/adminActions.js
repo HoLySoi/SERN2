@@ -10,6 +10,7 @@ import {
   saveDetailDoctorService,
   getAllSpecialty,
   getAllClinic,
+  getDoctorsSchedule,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -207,10 +208,10 @@ export const editUserFailed = () => ({
   type: actionTypes.EDIT_USER_FAILED,
 });
 
-export const fetchTopDoctor = () => {
+export const fetchTopDoctor = (limit, offset, filter) => {
   return async (dispatch, getState) => {
     try {
-      let res = await getTopDoctorHomeService("");
+      let res = await getTopDoctorHomeService(limit, offset, filter);
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
@@ -234,6 +235,33 @@ export const fetchAllDoctors = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getAllDoctors();
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,
+          dataDr: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: actionTypes.FETCH_ALL_DOCTORS_FAILED,
+      });
+      console.log("FETCH_ALL_DOCTORS_FAILED", error);
+    }
+  };
+};
+
+export const fetchAllDoctorsSchedule = (
+  limit = 10,
+  offset = 0,
+  filter = ""
+) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getDoctorsSchedule(limit, offset, filter);
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.FETCH_ALL_DOCTORS_SUCCESS,

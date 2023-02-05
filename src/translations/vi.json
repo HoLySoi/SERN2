@@ -158,5 +158,12 @@
       "specialty": "Chọn chuyên khoa",
       "select-clinic": "Chọn phòng khám"
     }
+  },
+  "show-more": {
+    "doctor": "Bác sĩ",
+    "outstanding-doctor": "Bác sĩ nổi bật",
+    "clinic": "Bệnh viện, Phòng khám",
+    "outstanding-clinic": "Bệnh viện, phòng khám nổi bật",
+    "specialty": "Chuyên khoa"
   }
 }

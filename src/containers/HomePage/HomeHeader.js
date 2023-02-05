@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions";
 import { withRouter } from "react-router";
+import SearchAll from "../../components/SearchAll/SearchAll";
 
 class HomeHeader extends Component {
   changeLanguage = (language) => {
@@ -113,10 +114,7 @@ class HomeHeader extends Component {
               <div className="title2">
                 <FormattedMessage id="banner.title2" />
               </div>
-              <div className="search">
-                <i className="fas fa-search"></i>
-                <input type="text" placeholder="Tìm kiếm / search" />
-              </div>
+              <SearchAll history={this.props.history} language={language} />
             </div>
             <div className="content-down">
               <div className="options">

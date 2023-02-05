@@ -6,12 +6,15 @@ import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
 import { withRouter } from "react-router";
+import ShowMore from "../../../components/ShowMore/ShowMore";
 
 class OutStandingDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {
       arrDoctors: [],
+      showMoreDoctors: false,
+      doctors: [],
     };
   }
 
@@ -19,6 +22,15 @@ class OutStandingDoctor extends Component {
     if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
       this.setState({
         arrDoctors: this.props.topDoctorsRedux,
+      });
+    }
+    if (
+      (prevState.showMoreDoctors !== this.state.showMoreDoctors ||
+        this.props.showMoreDoctors) &&
+      prevProps.doctors !== this.props.topDoctors
+    ) {
+      this.setState({
+        doctors: this.props.topDoctors,
       });
     }
   }
@@ -33,6 +45,24 @@ class OutStandingDoctor extends Component {
     }
   };
 
+  handleShowMoreDoctor = () => {
+    !this.state.showMoreDoctors && this.props.loadDoctors(10, 0);
+    this.setState({
+      showMoreDoctors: true,
+    });
+  };
+
+  handleCloseShowMore = () => {
+    this.props.loadTopDoctors();
+    this.setState({
+      showMoreDoctors: false,
+    });
+  };
+
+  handleFilterSearch = (value) => {
+    this.props.loadDoctors(10, 0, value);
+  };
+
   render() {
     let arrDoctors = this.state.arrDoctors;
     let { language } = this.props;
@@ -45,9 +75,23 @@ class OutStandingDoctor extends Component {
             <span className="title-section">
               <FormattedMessage id="homepage.outstanding-doctor" />
             </span>
-            <button className="btn-section">
+            <button className="btn-section" onClick={this.handleShowMoreDoctor}>
               <FormattedMessage id="homepage.more-infor" />
             </button>
+            {this.state.showMoreDoctors && (
+              <ShowMore
+                title={<FormattedMessage id="show-more.doctor" />}
+                onClose={this.handleCloseShowMore}
+                data={this.props.doctors}
+                subTitle={
+                  <FormattedMessage id="show-more.outstanding-doctor" />
+                }
+                type="doctor"
+                language={language}
+                onClick={this.handleViewDetailDoctor}
+                onSubmit={this.handleFilterSearch}
+              />
+            )}
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
@@ -98,12 +142,15 @@ const mapStateToProps = (state) => {
     isLoggedIn: state.user.isLoggedIn,
     language: state.app.language,
     topDoctorsRedux: state.admin.topDoctors,
+    doctors: state.admin.topDoctors,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadTopDoctors: () => dispatch(actions.fetchTopDoctor()),
+    loadDoctors: (limit, offset, filter) =>
+      dispatch(actions.fetchTopDoctor(limit, offset, filter)),
   };
 };
 

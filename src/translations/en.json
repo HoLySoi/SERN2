@@ -158,5 +158,12 @@
       "specialty": "Specialty",
       "select-clinic": "Clinic"
     }
+  },
+  "show-more": {
+    "doctor": "Doctor",
+    "outstanding-doctor": "Featured doctor",
+    "clinic": "Hospitals, Clinics",
+    "outstanding-clinic": "Outstanding Hospitals and Clinics",
+    "specialty": "Specialties"
   }
 }

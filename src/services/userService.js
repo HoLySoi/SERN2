@@ -33,12 +33,20 @@ const getAllCodeService = (inputType) => {
   return axios.get(`/api/allcode?type=${inputType}`);
 };
 
-const getTopDoctorHomeService = (limit) => {
-  return axios.get(`/api/top-doctor-home?limit=${limit}`);
+const getTopDoctorHomeService = (limit = 10, offset = 0, filter = "") => {
+  return axios.get(
+    `/api/top-doctor-home?filter=${filter}&limit=${limit}&offset=${offset}`
+  );
 };
 
 const getAllDoctors = () => {
   return axios.get(`/api/get-all-doctors`);
+};
+
+const getDoctorsSchedule = (limit = 10, offset = 0, filter = "") => {
+  return axios.get(
+    `/api/doctors-schedule?filter=${filter}&limit=${limit}&offset=${offset}`
+  );
 };
 
 const saveDetailDoctorService = (data) => {
@@ -79,8 +87,10 @@ const createNewSpecialty = (data) => {
   return axios.post(`/api/create-new-specialty`, data);
 };
 
-const getAllSpecialty = () => {
-  return axios.get(`/api/get-specialty`);
+const getAllSpecialty = (limit = 10, offset = 0, filter = "") => {
+  return axios.get(
+    `/api/get-specialty?filter=${filter}&limit=${limit}&offset=${offset}`
+  );
 };
 
 const getAllDetailSpecialtyById = (data) => {
@@ -131,8 +141,10 @@ const createNewClinic = (data) => {
   return axios.post(`/api/create-new-clinic`, data);
 };
 
-const getAllClinic = () => {
-  return axios.get(`/api/get-clinic`);
+const getAllClinic = (limit = 10, offset = 0, filter = "") => {
+  return axios.get(
+    `/api/get-clinic?filter=${filter}&limit=${limit}&offset=${offset}`
+  );
 };
 
 const getAllDetailClinicById = (data) => {
@@ -157,6 +169,10 @@ const getAllPatientForDoctor = (data) => {
 
 const postSendRemedy = (data) => {
   return axios.post(`/api/send-remedy`, data);
+};
+
+const searchAll = (search = "") => {
+  return axios.get(`/searchAll?search=${search}`);
 };
 
 export {
@@ -193,4 +209,6 @@ export {
   editClinic,
   deleteSpecialty,
   deleteClinic,
+  searchAll,
+  getDoctorsSchedule,
 };
