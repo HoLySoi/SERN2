@@ -45,6 +45,15 @@ class ManageSchedule extends Component {
         rangeTime: data,
       });
     }
+    const currentDate = this.state.currentDate;
+    const prevDate = prevState.currentDate;
+    if (!currentDate || !prevDate || currentDate == "Invalid Date") return;
+    let a = !_.isEmpty(this.state.selectedDoctor);
+    let b = currentDate.getTime() !== prevDate.getTime();
+    let c = !_.isEqual(prevState.selectedDoctor, this.state.selectedDoctor);
+    if (a && (b || c)) {
+      this.handleChangeRangeTime();
+    }
   }
 
   buildDataInputSelect = (inputData) => {
@@ -65,19 +74,12 @@ class ManageSchedule extends Component {
 
   handleChangeSelect = async (selectedOption) => {
     this.setState({ selectedDoctor: selectedOption });
-    this.handleChangeRangeTime();
   };
   handleOnChangeDatePicker = (date) => {
     this.setState({ currentDate: date[0] });
-    this.handleChangeRangeTime();
   };
 
   handleChangeRangeTime = () => {
-    if (
-      this.state.currentDate === "Invalid Date" ||
-      _.isEmpty(this.state.selectedDoctor)
-    )
-      return;
     const { doctorData: doctorsSchedule } = this.props.allDoctors.filter(
       (doctor) => doctor.id === this.state.selectedDoctor.value
     )[0];
@@ -89,12 +91,14 @@ class ManageSchedule extends Component {
           +schedule.date === Date.parse(this.state?.currentDate?.toDateString())
         );
       });
+      item.isSelected = false;
       if (filter.length) {
         item.isSelected = true;
         return item;
       }
       return item;
     });
+    this.setState({ rangeTime });
   };
 
   handleClickBtnTime = (time) => {
