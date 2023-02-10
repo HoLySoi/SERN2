@@ -7,6 +7,7 @@ import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
 import { withRouter } from "react-router";
 import ShowMore from "../../../components/ShowMore/ShowMore";
+import { getTopDoctorHomeService } from "../../../services/userService";
 
 class OutStandingDoctor extends Component {
   constructor(props) {
@@ -45,22 +46,32 @@ class OutStandingDoctor extends Component {
     }
   };
 
-  handleShowMoreDoctor = () => {
-    !this.state.showMoreDoctors && this.props.loadDoctors(10, 0);
+  handleShowMoreDoctor = async () => {
+    let res = await getTopDoctorHomeService(10, 0, "");
+    if (res && res.errCode === 0) {
+      this.setState({
+        doctors: res.data ? res.data : [],
+      });
+    }
     this.setState({
       showMoreDoctors: true,
+      doctors: res.data ? res.data : [],
     });
   };
 
   handleCloseShowMore = () => {
-    this.props.loadTopDoctors();
     this.setState({
       showMoreDoctors: false,
     });
   };
 
-  handleFilterSearch = (value) => {
-    this.props.loadDoctors(10, 0, value);
+  handleFilterSearch = async (value) => {
+    let res = await getTopDoctorHomeService(10, 0, value);
+    if (res && res.errCode === 0) {
+      this.setState({
+        doctors: res.data ? res.data : [],
+      });
+    }
   };
 
   render() {
@@ -82,7 +93,7 @@ class OutStandingDoctor extends Component {
               <ShowMore
                 title={<FormattedMessage id="show-more.doctor" />}
                 onClose={this.handleCloseShowMore}
-                data={this.props.doctors}
+                data={this.state.doctors}
                 subTitle={
                   <FormattedMessage id="show-more.outstanding-doctor" />
                 }
@@ -142,7 +153,6 @@ const mapStateToProps = (state) => {
     isLoggedIn: state.user.isLoggedIn,
     language: state.app.language,
     topDoctorsRedux: state.admin.topDoctors,
-    doctors: state.admin.topDoctors,
   };
 };
 
