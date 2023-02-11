@@ -4,8 +4,18 @@
         padding         : 10px;
         margin          : 15px 0;
 
-        h1,
-        h2,
+
+        h1 {
+            font-size  : 24px;
+            font-weight: 800;
+            color      : rgb(63, 63, 243);
+        }
+
+        h2 {
+            font-size  : 20px;
+            font-weight: 700;
+        }
+
         h3 {
             font-size  : 16px;
             font-weight: 600;
@@ -30,6 +40,13 @@
         background    : #eee;
         display       : flex;
         flex-direction: column;
+
+        img {
+            display     : block;
+            margin-left : auto;
+            margin-right: auto;
+            width       : 70%;
+        }
     }
 
     .each-doctor {

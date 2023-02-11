@@ -253,7 +253,7 @@ class BookingModal extends Component {
                     }
                   ></input>
                 </div>
-                <div className="col-12 from-group">
+                {/* <div className="col-12 from-group">
                   <label>
                     <FormattedMessage id="patient.booking-modal.reason" />
                   </label>
@@ -264,8 +264,8 @@ class BookingModal extends Component {
                       this.handleOnchangeInput(event, "reason")
                     }
                   ></input>
-                </div>
-                <div className="col-6 from-group">
+                </div> */}
+                {/* <div className="col-6 from-group">
                   <label>
                     <FormattedMessage id="patient.booking-modal.birthday" />
                   </label>
@@ -275,7 +275,7 @@ class BookingModal extends Component {
                     className="form-control"
                     value={this.state.birthday}
                   />
-                </div>
+                </div> */}
                 <div className="col-6 from-group">
                   <label>
                     <FormattedMessage id="patient.booking-modal.gender" />

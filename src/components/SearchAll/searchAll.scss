@@ -1,12 +1,15 @@
 .search-list {
-  position  : absolute;
-  left      : 0;
-  top       : 60px;
-  background: #fff;
-  width     : 100%;
-  max-height: calc(100vh - 300px);
-  overflow-y: scroll;
-  overflow  : auto;
+  position     : absolute;
+  left         : 0;
+  top          : 60px;
+  background   : #fff;
+  width        : 100%;
+  max-height   : calc(100vh - 400px);
+  overflow-y   : scroll;
+  overflow     : auto;
+  z-index      : 100;
+  // border    : solid 1px;
+  box-shadow   : 2px 2px 2px rgb(228, 228, 228) !important;
 
   .search-title {
     border-bottom: 1px solid #eee;
