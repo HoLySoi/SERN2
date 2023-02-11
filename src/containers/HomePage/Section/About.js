@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./About.scss";
+import { FormattedMessage } from "react-intl";
 
 class About extends Component {
   render() {
     return (
       <div className="section-share section-about">
-        <div className="section-about-header">Hướng dẫn sử dụng phần mềm</div>
+        <div className="section-about-header">
+          <FormattedMessage id="homepage.instruct" />
+        </div>
         <div className="section-about-content">
           <div className="content-left">
             <div>

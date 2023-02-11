@@ -27,7 +27,7 @@ class HomeHeader extends Component {
         <div className="home-header-container">
           <div className="home-header-container">
             <div className="left-content">
-              <i className="fas fa-bars"></i>
+              {/* <i className="fas fa-bars"></i> */}
               <div
                 className="header-logo"
                 onClick={() => this.returnToHome()}
@@ -116,7 +116,7 @@ class HomeHeader extends Component {
               </div>
               <SearchAll history={this.props.history} language={language} />
             </div>
-            <div className="content-down">
+            {/* <div className="content-down">
               <div className="options">
                 <div className="option-child">
                   <div className="icon-child">
@@ -167,7 +167,7 @@ class HomeHeader extends Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         )}
       </React.Fragment>

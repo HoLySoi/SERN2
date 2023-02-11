@@ -9,8 +9,8 @@
     "select-room": "Chọn bệnh viện, phòng khám",
     "doctor": "Bác sĩ",
     "select-doctor": "Chọn bác sĩ giỏi",
-    "fee": "Gói khám",
-    "check-health": "Khám sức khỏe tổng quát",
+    "fee": "Cẩm nang",
+    "check-health": "Cẩm nang về sức khỏe",
     "support": "Hỗ trợ",
     "welcome": "Xin chào  "
   },
@@ -66,6 +66,7 @@
     "more-infor": "Xem thêm",
     "specialty-poplular": "Chuyên khoa phổ biến",
     "clinic-poplular": "Cơ sở y tế nổi bật",
+    "instruct": "Hướng dẫn sử dụng phần mềm",
     "handbook": "Cẩm nang"
   },
   "manage-schedule": {
