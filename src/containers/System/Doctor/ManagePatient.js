@@ -44,24 +44,7 @@ class ManagePatient extends Component {
     }
   };
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {
-    // if (this.props.language !== prevProps.language) {
-    //   let allDays = this.getArrDays(this.props.language);
-    //   this.setState({
-    //     allDays: allDays,
-    //   });
-    // }
-    // if (this.props.doctorIdFromParent !== prevProps.doctorIdFromParent) {
-    //   let allDays = this.getArrDays(this.props.language);
-    //   let res = await getScheduleDoctorByDate(
-    //     this.props.doctorIdFromParent,
-    //     allDays[0].value
-    //   );
-    //   this.setState({
-    //     allAvailableTime: res.data ? res.data : [],
-    //   });
-    // }
-  }
+  async componentDidUpdate(prevProps, prevState, snapshot) {}
   handleOnChangeDatePicker = (date) => {
     this.setState(
       {
@@ -156,7 +139,6 @@ class ManagePatient extends Component {
                   <tbody>
                     <tr>
                       <th>
-                        {" "}
                         <FormattedMessage id="manage-patient.number" />
                       </th>
                       <th>
@@ -171,6 +153,7 @@ class ManagePatient extends Component {
                       <th>
                         <FormattedMessage id="manage-patient.gender" />
                       </th>
+                      <th>Phonenumber</th>
                       <th>
                         <FormattedMessage id="manage-patient.action" />
                       </th>
@@ -193,6 +176,7 @@ class ManagePatient extends Component {
                             <td>{item.patientData.firstName}</td>
                             <td>{item.patientData.address}</td>
                             <td>{gender}</td>
+                            <td>{item.patientData.phonenumber}</td>
                             <td>
                               <button
                                 className="mp-btn-confirm"

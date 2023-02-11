@@ -104,7 +104,7 @@ class BookingModal extends Component {
 
     let res = await postPatientBookAppointment({
       fullName: this.state.fullName,
-      phoneNumber: this.state.fullName,
+      phoneNumber: this.state.phoneNumber,
       email: this.state.email,
       address: this.state.address,
       reason: this.state.reason,
@@ -167,6 +167,7 @@ class BookingModal extends Component {
 
   render() {
     // let { allDays, allAvailableTime } = this.state;
+    console.log("state", this.state);
     let { isOpenModal, closeBookingClose, dataTime } = this.props;
     let doctorId = "";
     if (dataTime && !_.isEmpty(dataTime)) {
