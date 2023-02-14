@@ -4,7 +4,7 @@ import HomeHeader from "./HomeHeader";
 import Specialty from "./Section/Specialty";
 import MedicalFacility from "./Section/MedicalFacility";
 import OutStandingDoctor from "./Section/OutStandingDoctor";
-import Handbook from "./Section/Handbook";
+import Handbook from "./Section/HandBook";
 import About from "./Section/About";
 import HomeFooter from "./HomeFooter";
 
