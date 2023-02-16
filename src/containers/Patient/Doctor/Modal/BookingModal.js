@@ -5,7 +5,6 @@ import "./BookingModal.scss";
 import { Modal } from "reactstrap";
 import ProfileDoctor from "../ProfileDoctor";
 import _ from "lodash";
-import DatePicker from "../../../../components/Input/DatePicker";
 import * as actions from "../../../../store/actions";
 import { LANGUAGES } from "../../../../utils";
 import Select from "react-select";
@@ -40,7 +39,7 @@ class BookingModal extends Component {
     let result = [];
     let language = this.props.language;
     if (data && data.length > 0) {
-      data.map((item) => {
+      data.forEach((item) => {
         let object = {};
         object.label = language === LANGUAGES.VI ? item.valueVi : item.valueEn;
         object.value = item.keyMap;
@@ -143,9 +142,9 @@ class BookingModal extends Component {
         language === LANGUAGES.VI
           ? moment.unix(+dataTime.date / 1000).format("dddd - DD/MM/YYYY")
           : moment
-              .unix(+dataTime.date / 1000)
-              .locale("en")
-              .format("ddd - MM/DD/YYYY");
+            .unix(+dataTime.date / 1000)
+            .locale("en")
+            .format("ddd - MM/DD/YYYY");
 
       return `${time} - ${date}`;
     }
@@ -184,7 +183,7 @@ class BookingModal extends Component {
           className={"booking-modal-container"}
           size="lg"
           centered
-          // backdrop={true}
+        // backdrop={true}
         >
           <div className="booking-modal-content">
             <div className="booking-modal-header">

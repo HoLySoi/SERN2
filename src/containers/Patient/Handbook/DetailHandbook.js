@@ -2,15 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./DetailHandbook.scss";
 import HomeHeader from "../../HomePage/HomeHeader";
-import DoctorSchedule from "../Doctor/DoctorSchedule";
-import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
-import ProfileDoctor from "../Doctor/ProfileDoctor";
 import {
   getAllDetailHandbookById,
   getAllCodeService,
 } from "../../../services/userService";
 import _ from "lodash";
-import { LANGUAGES } from "../../../utils";
 
 class DetailHandbook extends Component {
   constructor(props) {
@@ -46,7 +42,7 @@ class DetailHandbook extends Component {
         if (data && !_.isEmpty(res.data)) {
           let arr = data.doctorHandbook;
           if (arr && arr.length > 0) {
-            arr.map((item) => {
+            arr.forEach((item) => {
               arrDoctorId.push(item.doctorId);
             });
           }
@@ -111,7 +107,7 @@ class DetailHandbook extends Component {
         if (data && !_.isEmpty(res.data)) {
           let arr = data.doctorHandbook;
           if (arr && arr.length > 0) {
-            arr.map((item) => {
+            arr.forEach((item) => {
               arrDoctorId.push(item.doctorId);
             });
           }
@@ -125,8 +121,7 @@ class DetailHandbook extends Component {
   };
 
   render() {
-    let { arrDoctorId, dataDetailHandbook, listProvince } = this.state;
-    let { language } = this.props;
+    let { dataDetailHandbook } = this.state;
 
     return (
       <div className="detail-handbook-container">

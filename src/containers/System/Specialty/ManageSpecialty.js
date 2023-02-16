@@ -9,7 +9,6 @@ import { createNewSpecialty } from "../../../services/userService";
 import { toast } from "react-toastify";
 import {
   getAllSpecialty,
-  getAllDetailSpecialtyById,
   deleteSpecialty,
   editSpecialty,
 } from "../../../services/userService";

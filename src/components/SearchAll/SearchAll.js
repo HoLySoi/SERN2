@@ -76,7 +76,7 @@ const SearchAll = (props) => {
                   handleClick(item, key);
                 }}
               >
-                <img src={item?.image} />
+                <img alt="" src={item?.image} />
                 <div>{name}</div>
                 {/* {key === "doctor" && <div>{}</div>} */}
               </div>

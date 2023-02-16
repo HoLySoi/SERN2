@@ -6,7 +6,6 @@ import Slider from "react-slick";
 import { getAllClinic } from "../../../services/userService";
 import { withRouter } from "react-router";
 import ShowMore from "../../../components/ShowMore/ShowMore";
-import * as actions from "../../../store/actions";
 
 class MedicalFacility extends Component {
   constructor(props) {

@@ -12,8 +12,6 @@ import { path } from "../utils";
 import Home from "../routes/Home";
 import Login from "./Auth/Login";
 import System from "../routes/System";
-import { CustomToastCloseButton } from "../components/CustomToast";
-import ConfirmModal from "../components/ConfirmModal";
 import HomePage from "./HomePage/HomePage";
 import CustomScrollbars from "../components/CustomScrollbars";
 import DetailDoctor from "./Patient/Doctor/DetailDoctor";
@@ -106,7 +104,7 @@ class App extends Component {
               pauseOnFocusLoss
               draggable
               pauseOnHover
-              // theme="light"
+            // theme="light"
             />
           </div>
         </Router>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import { getAllCodeService } from "../../../services/userService";
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils";
 import * as actions from "../../../store/actions";
 import "./UserRedux.scss";
@@ -214,7 +213,6 @@ class UserRedux extends Component {
     let positions = this.state.positionArr;
     let roles = this.state.roleArr;
     let language = this.props.language;
-    let isGetGenders = this.props.isGetGenders;
 
     let {
       email,
@@ -226,7 +224,6 @@ class UserRedux extends Component {
       gender,
       role,
       position,
-      avatar,
     } = this.state;
 
     return (

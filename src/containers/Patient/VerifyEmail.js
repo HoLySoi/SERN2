@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./VerifyEmail.scss";
-import { FormattedMessage } from "react-intl";
 import { postVerifyBookAppointment } from "../../services/userService";
 import HomeHeader from "../HomePage/HomeHeader";
 

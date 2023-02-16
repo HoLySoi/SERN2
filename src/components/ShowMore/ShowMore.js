@@ -1,4 +1,3 @@
-import e from "cors";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -30,7 +29,7 @@ const ShowMore = (props) => {
       imageBase64 = new Buffer(item.image, "base64").toString("binary");
     }
 
-    return <img src={imageBase64} className={`${type}-img`} />;
+    return <img alt="" src={imageBase64} className={`${type}-img`} />;
   };
 
   const getContent = (item) => {

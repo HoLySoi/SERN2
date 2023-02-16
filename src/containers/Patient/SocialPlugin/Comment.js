@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // import "./Comment.scss";
 import { LANGUAGES } from "../../../utils";
-import { FormattedMessage } from "react-intl";
 
 class Comment extends Component {
   constructor(props) {
@@ -47,7 +46,7 @@ class Comment extends Component {
     this.initFacebookSDK();
   }
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {}
+  async componentDidUpdate(prevProps, prevState, snapshot) { }
 
   render() {
     // let { allDays, allAvailableTime } = this.state;

@@ -5,7 +5,6 @@ import { LANGUAGES } from "../../../utils";
 import { getExtraInforDoctorById } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
 import NumberFormat from "react-number-format";
-import { lang } from "moment";
 
 class DoctorExtraInfor extends Component {
   constructor(props) {
@@ -156,13 +155,13 @@ class DoctorExtraInfor extends Component {
                 <div className="payment">
                   <FormattedMessage id="patient.extra-infor-doctor.payment" />
                   {extraInfor &&
-                  extraInfor.paymentTypeData &&
-                  language === LANGUAGES.VI
+                    extraInfor.paymentTypeData &&
+                    language === LANGUAGES.VI
                     ? extraInfor.paymentTypeData.valueVi
                     : ""}
                   {extraInfor &&
-                  extraInfor.paymentTypeData &&
-                  language === LANGUAGES.EN
+                    extraInfor.paymentTypeData &&
+                    language === LANGUAGES.EN
                     ? extraInfor.paymentTypeData.valueEn
                     : ""}
                 </div>

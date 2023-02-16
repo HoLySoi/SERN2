@@ -7,10 +7,8 @@ import DoctorExtraInfor from "../Doctor/DoctorExtraInfor";
 import ProfileDoctor from "../Doctor/ProfileDoctor";
 import {
   getAllDetailClinicById,
-  getAllCodeService,
 } from "../../../services/userService";
 import _ from "lodash";
-import { LANGUAGES } from "../../../utils";
 
 class DetailClinic extends Component {
   constructor(props) {
@@ -37,7 +35,7 @@ class DetailClinic extends Component {
         if (data && !_.isEmpty(res.data)) {
           let arr = data.doctorClinic;
           if (arr && arr.length > 0) {
-            arr.map((item) => {
+            arr.forEach((item) => {
               arrDoctorId.push(item.doctorId);
             });
           }
@@ -51,7 +49,7 @@ class DetailClinic extends Component {
     }
   }
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {}
+  async componentDidUpdate(prevProps, prevState, snapshot) { }
 
   //   handleOnChangeSelect = async (event) => {
   //     if (
@@ -88,7 +86,6 @@ class DetailClinic extends Component {
 
   render() {
     let { arrDoctorId, dataDetailClinic } = this.state;
-    let { language } = this.props;
 
     return (
       <div className="detail-clinic-container">

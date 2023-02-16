@@ -9,7 +9,6 @@ import { createNewClinic } from "../../../services/userService";
 import { toast } from "react-toastify";
 import {
   getAllClinic,
-  getAllDetailClinicById,
   deleteClinic,
   editClinic,
 } from "../../../services/userService";

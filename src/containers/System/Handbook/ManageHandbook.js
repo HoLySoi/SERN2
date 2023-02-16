@@ -9,7 +9,6 @@ import { createNewHandbook } from "../../../services/userService";
 import { toast } from "react-toastify";
 import {
   getAllHandbook,
-  getAllDetailHandbookById,
   deleteHandbook,
   editHandbook,
 } from "../../../services/userService";
@@ -42,7 +41,7 @@ class ManageHandbook extends Component {
     }
   };
 
-  async componentDidUpdate(prevProps, prevState, snapshot) {}
+  async componentDidUpdate(prevProps, prevState, snapshot) { }
 
   handleOnChangeInput = (event, id) => {
     let stateCopy = { ...this.State };
