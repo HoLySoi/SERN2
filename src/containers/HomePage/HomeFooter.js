@@ -7,7 +7,7 @@ class HomeFooter extends Component {
       <div className="home-footer">
         <p>
           &copy; 2022 Đồ án tốt nghiệp
-          <a target="_blank" href="https://www.facebook.com/ho.toan.7922hvt">
+          <a rel="noreferrer" target="_blank" href="https://www.facebook.com/ho.toan.7922hvt">
             &#8594; Click here &#8592;
           </a>
         </p>
