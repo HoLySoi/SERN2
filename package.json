@@ -2,7 +2,10 @@
   "name": "react-app-hoi-dan-it",
   "version": "0.1.0",
   "private": true,
-  "type":"module",
+  "type": "module",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "dependencies": {
     "@formatjs/intl-pluralrules": "^3.5.6",
     "@formatjs/intl-relativetimeformat": "^7.3.6",
