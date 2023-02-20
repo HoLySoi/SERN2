@@ -101,7 +101,6 @@ class ManageClinic extends Component {
       });
     } else {
       toast.error("Something wrongs....");
-      console.log("check res: ", res);
     }
   };
 
@@ -120,7 +119,6 @@ class ManageClinic extends Component {
   };
 
   handleEditClinic = (clinic) => {
-    console.log("check edit clinic", clinic);
     this.setState({
       isEditClinic: true,
       id: clinic.id,
@@ -133,7 +131,6 @@ class ManageClinic extends Component {
   };
 
   doEditClinic = async () => {
-    console.log("check state doEditClinic", this.state);
     try {
       let res = await editClinic(this.state);
 
@@ -159,7 +156,6 @@ class ManageClinic extends Component {
   render() {
     // let { allDays, allAvailableTime } = this.state;
     // let { language } = this.props;
-    console.log("check state", this.state);
     let arrClinic = this.state.arrClinic;
     return (
       <>

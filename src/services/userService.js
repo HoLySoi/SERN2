@@ -12,7 +12,6 @@ const getAllUsers = (inputId) => {
 };
 
 const createNewUserService = (data) => {
-  // console.log("check data from service:", data);
   return axios.post("/api/create-new-user", data);
 };
 
@@ -25,7 +24,6 @@ const deleteUserService = (userId) => {
 };
 
 const editUserService = (inputData) => {
-  // console.log("check data from service:", data);
   return axios.put("/api/edit-user", inputData);
 };
 
@@ -77,6 +75,10 @@ const getProfileDoctorById = (doctorId) => {
 
 const postPatientBookAppointment = (data) => {
   return axios.post(`/api/patient-book-appointment`, data);
+};
+
+const cancelPatientBookAppointment = (data) => {
+  return axios.post(`/api/cancel-book-appointment`, data);
 };
 
 const postVerifyBookAppointment = (data) => {
@@ -211,4 +213,5 @@ export {
   deleteClinic,
   searchAll,
   getDoctorsSchedule,
+  cancelPatientBookAppointment,
 };

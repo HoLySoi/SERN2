@@ -1,11 +1,12 @@
 import axios from "axios";
 
+const user = localStorage.getItem("user")
+
 const instance = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
-  // withCredentials: false,
-  // headers: {
-  //   "Access-Control-Allow-Origin": "*"
-  // }
+  headers: {
+    "Authentication": `Bearer ${user ? JSON.parse(user)?.token || "" : ""}`
+  }
 });
 
 instance.interceptors.response.use((response) => {

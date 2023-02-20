@@ -5,21 +5,29 @@ import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import { getAllHandbook } from "../../../services/userService";
 import { withRouter } from "react-router";
+import { Spinner } from "reactstrap";
 
 class Handbook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataHandbook: [],
+      dataHandbook: null,
     };
   }
 
   async componentDidMount() {
-    let res = await getAllHandbook();
-    if (res && res.errCode === 0) {
+    try {
+      let res = await getAllHandbook();
+      if (res && res.errCode === 0) {
+        this.setState({
+          dataHandbook: res.data ? res.data : [],
+        });
+      }
+    } catch (e) {
+      console.log(e)
       this.setState({
-        dataHandbook: res.data ? res.data : [],
-      });
+        dataHandbook: []
+      })
     }
   }
 
@@ -50,6 +58,7 @@ class Handbook extends Component {
             </button>
           </div>
           <div className="section-body">
+            {!dataHandbook && <Spinner />}
             <Slider {...this.props.settings}>
               {dataHandbook &&
                 dataHandbook.length > 0 &&

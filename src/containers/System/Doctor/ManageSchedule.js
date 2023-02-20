@@ -17,14 +17,19 @@ class ManageSchedule extends Component {
     this.state = {
       listDoctors: [],
       selectedDoctor: {},
-      currentDate: "",
+      currentDate: new Date(),
       rangeTime: [],
     };
   }
 
-  componentDidMount() {
-    this.props.fetchAllDoctorsSchedule(10, 0, "");
+  async componentDidMount() {
     this.props.fetchAllScheduleTime();
+    await this.props.fetchAllDoctorsSchedule(10, 0, "");
+    if (this.state?.listDoctors?.length === 1) {
+      this.setState({
+        selectedDoctor: this.state.listDoctors[0]
+      })
+    }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -168,10 +173,9 @@ class ManageSchedule extends Component {
   };
 
   render() {
-    let { rangeTime } = this.state;
+    let { rangeTime, listDoctors, selectedDoctor } = this.state;
     let { language } = this.props;
     let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-    console.log("check state", this.state);
     return (
       <div className="manage-schedule-container">
         <div className="m-s-title title text-center my-4">
@@ -184,9 +188,9 @@ class ManageSchedule extends Component {
                 <FormattedMessage id="manage-schedule.choose-doctor" />
               </label>
               <Select
-                value={this.state.selectedDoctor}
+                value={selectedDoctor}
                 onChange={this.handleChangeSelect}
-                options={this.state.listDoctors}
+                options={listDoctors}
               />
             </div>
             <div className="col-6 form-group">

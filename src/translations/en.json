@@ -84,7 +84,9 @@
     "time": "Time",
     "action": "Action",
     "confirm": "FINISH",
-    "no-data": "NO DATA"
+    "cancel": "CANCEL",
+    "no-data": "NO DATA",
+    "empty-reason": "Reason must not blank"
   },
   "clinic": {
     "manage-clinic": "MANAGE CLINICS",
@@ -166,5 +168,14 @@
     "clinic": "Hospitals, Clinics",
     "outstanding-clinic": "Outstanding Hospitals and Clinics",
     "specialty": "Specialties"
+  },
+  "common": {
+    "confirm-this-task": "Confirm this task?",
+    "confirm": "Confirm",
+    "close": "Close",
+    "accept": "Accept",
+    "reason": "Cancel reason",
+    "error": "An error occurred",
+    "success": "success"
   }
 }

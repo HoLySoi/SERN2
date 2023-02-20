@@ -6,23 +6,30 @@ import Slider from "react-slick";
 import { getAllClinic } from "../../../services/userService";
 import { withRouter } from "react-router";
 import ShowMore from "../../../components/ShowMore/ShowMore";
+import { Spinner } from "reactstrap";
 
 class MedicalFacility extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataClinics: [],
+      dataClinics: null,
       showMoreClinics: false,
-      clinics: [],
+      clinics: null,
     };
   }
 
   async componentDidMount() {
-    let res = await getAllClinic();
-    if (res && res.errCode === 0) {
+    try {
+      let res = await getAllClinic();
+      if (res && res.errCode === 0) {
+        this.setState({
+          dataClinic: res.data ? res.data : [],
+        });
+      }
+    } catch (e) {
       this.setState({
-        dataClinic: res.data ? res.data : [],
-      });
+        dataClinic: []
+      })
     }
   }
 
@@ -40,27 +47,46 @@ class MedicalFacility extends Component {
   };
 
   handleShowMoreClinics = async () => {
-    let res = await getAllClinic(10, 0, "");
-    if (res && res.errCode === 0) {
+    this.setState({
+      showMoreClinics: true,
+    });
+    try {
+      let res = await getAllClinic(10, 0, "");
+      if (res && res.errCode === 0) {
+        this.setState({
+          clinics: res.data ? res.data : [],
+        });
+      }
+    } catch (error) {
       this.setState({
-        showMoreClinics: true,
-        clinics: res.data ? res.data : [],
-      });
+        clinics: []
+      })
     }
+
   };
 
   handleCloseShowMore = () => {
     this.setState({
       showMoreClinics: false,
+      clinics: null,
     });
   };
 
   handleFilterSearch = async (value = "") => {
-    let res = await getAllClinic(10, 0, value);
-    if (res && res.errCode === 0) {
+    this.setState({
+      clinics: null,
+    });
+    try {
+      let res = await getAllClinic(10, 0, value);
+      if (res && res.errCode === 0) {
+        this.setState({
+          showMoreClinics: true,
+          clinics: res.data ? res.data : [],
+        });
+      }
+    } catch (error) {
       this.setState({
-        showMoreClinics: true,
-        clinics: res.data ? res.data : [],
+        clinics: [],
       });
     }
   };
@@ -97,6 +123,7 @@ class MedicalFacility extends Component {
             )}
           </div>
           <div className="section-body">
+            {!dataClinic && <Spinner />}
             <Slider {...this.props.settings}>
               {dataClinic &&
                 dataClinic.length > 0 &&

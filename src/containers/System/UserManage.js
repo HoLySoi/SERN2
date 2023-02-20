@@ -83,7 +83,6 @@ class UserManage extends Component {
   };
 
   handleEditUser = (user) => {
-    console.log("check eidt user", user);
     this.setState({
       isOpenModalEditUser: true,
       userEdit: user,
@@ -109,7 +108,6 @@ class UserManage extends Component {
 
   render() {
     let arrUsers = this.state.arrUsers;
-    console.log(arrUsers);
 
     return (
       <div className="users-container">

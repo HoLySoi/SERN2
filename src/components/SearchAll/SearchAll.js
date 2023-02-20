@@ -4,6 +4,7 @@ import { searchAll } from "../../services/userService";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils";
 import "./searchAll.scss";
+import { Spinner } from "reactstrap";
 
 const SearchAll = (props) => {
   const { language, history } = props;
@@ -13,6 +14,7 @@ const SearchAll = (props) => {
   const ref = useRef(null);
 
   const initData = async (search = "") => {
+    setData(null)
     const res = await searchAll(search);
     if (res && res.errCode === 0) {
       setData(res.data ? res.data : {});
@@ -50,6 +52,7 @@ const SearchAll = (props) => {
   };
 
   const renderSearchList = () => {
+    if (!data) return <div style={{ padding: 12 }}><Spinner /></div>
     return Object.keys(data).map((key) => {
       return (
         <>

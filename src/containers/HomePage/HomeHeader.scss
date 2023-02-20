@@ -37,10 +37,14 @@
             display        : flex;
             justify-content: space-between;
             align-items    : center;
-
             .child-content {
+                text-decoration: none;
                 cursor: pointer;
-
+                color: #212529;
+                &:hover, &:focus {
+                    color: #212529;
+                }
+                
                 .subs-title {
                     font-weight: 400;
                     font-size  : 12px;

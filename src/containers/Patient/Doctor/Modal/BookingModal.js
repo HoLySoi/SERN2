@@ -125,7 +125,6 @@ class BookingModal extends Component {
       toast.success("Booking a new appointment succeed!");
       this.props.closeBookingClose();
     } else {
-      console.log(this.state);
       toast.error("Booking a new appointment error!");
     }
   };
@@ -166,7 +165,6 @@ class BookingModal extends Component {
 
   render() {
     // let { allDays, allAvailableTime } = this.state;
-    console.log("state", this.state);
     let { isOpenModal, closeBookingClose, dataTime } = this.props;
     let doctorId = "";
     if (dataTime && !_.isEmpty(dataTime)) {

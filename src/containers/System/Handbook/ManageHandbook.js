@@ -100,7 +100,6 @@ class ManageHandbook extends Component {
   };
 
   handleEditHandbook = (handbook) => {
-    console.log("check edit handbook", handbook);
     this.setState({
       isEditHandbook: true,
       id: handbook.id,
@@ -112,7 +111,6 @@ class ManageHandbook extends Component {
   };
 
   doEditHandbook = async () => {
-    console.log("check state doEditHandbook", this.state);
     try {
       let res = await editHandbook(this.state);
 

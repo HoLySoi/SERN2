@@ -8,6 +8,7 @@ const initialState = {
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.USER_LOGIN_SUCCESS:
+      localStorage.setItem("user", JSON.stringify(action.userInfo));
       return {
         ...state,
         isLoggedIn: true,
@@ -20,6 +21,7 @@ const appReducer = (state = initialState, action) => {
         userInfo: null,
       };
     case actionTypes.PROCESS_LOGOUT:
+      localStorage.removeItem("user");
       return {
         ...state,
         isLoggedIn: false,

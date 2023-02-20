@@ -34,46 +34,38 @@ class HomeHeader extends Component {
               ></div>
             </div>
             <div className="center-content">
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="homeheader.speciality" />
-                  </b>
-                </div>
+              <a href="#specialty" className="child-content">
+                <b>
+                  <FormattedMessage id="homeheader.speciality" />
+                </b>
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.searchdoctor" />
                 </div>
-              </div>
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="homeheader.health-facility" />
-                  </b>
-                </div>
+              </a>
+              <a href="#clinic" className="child-content">
+                <b>
+                  <FormattedMessage id="homeheader.health-facility" />
+                </b>
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.select-room" />
                 </div>
-              </div>
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="homeheader.doctor" />
-                  </b>
-                </div>
+              </a>
+              <a href="#doctor" className="child-content">
+                <b>
+                  <FormattedMessage id="homeheader.doctor" />
+                </b>
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.select-doctor" />
                 </div>
-              </div>
-              <div className="child-content">
-                <div>
-                  <b>
-                    <FormattedMessage id="homeheader.fee" />
-                  </b>
-                </div>
+              </a>
+              <a href="#handbook" className="child-content">
+                <b>
+                  <FormattedMessage id="homeheader.fee" />
+                </b>
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.check-health" />
                 </div>
-              </div>
+              </a>
             </div>
             <div className="right-content">
               <div className="support">

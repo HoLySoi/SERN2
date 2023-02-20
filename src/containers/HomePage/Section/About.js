@@ -19,9 +19,9 @@ class About extends Component {
                 height="720"
                 src="https://www.youtube.com/embed/kMIOZS03774"
                 title="HƯỚNG DẪN TỰ LẤY MẪU XÉT NGHIỆM COVID-19 TẠI NHÀ| Kênh thông tin Bộ Y tế"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             </div>
           </div>

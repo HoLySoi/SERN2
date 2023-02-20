@@ -6,23 +6,31 @@ import Slider from "react-slick";
 import { getAllSpecialty } from "../../../services/userService";
 import { withRouter } from "react-router";
 import ShowMore from "../../../components/ShowMore/ShowMore";
+import { Spinner } from "reactstrap";
 
 class Specialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSpecialty: [],
+      dataSpecialty: null,
       showMoreSpecialty: false,
-      specialties: [],
+      specialties: null,
     };
   }
 
   async componentDidMount() {
-    let res = await getAllSpecialty();
-    if (res && res.errCode === 0) {
+    try {
+      let res = await getAllSpecialty();
+      if (res && res.errCode === 0) {
+        this.setState({
+          dataSpecialty: res.data ? res.data : [],
+        });
+      }
+    } catch (error) {
       this.setState({
-        dataSpecialty: res.data ? res.data : [],
+        dataSpecialty: [],
       });
+      console.log(error);
     }
   }
 
@@ -40,28 +48,49 @@ class Specialty extends Component {
   };
 
   handleShowMoreSpecialty = async () => {
-    let res = await getAllSpecialty(10, 0, "");
-    if (res && res.errCode === 0) {
+    try {
       this.setState({
         showMoreSpecialty: true,
-        specialties: res.data ? res.data : [],
       });
+      let res = await getAllSpecialty(10, 0, "");
+      if (res && res.errCode === 0) {
+        this.setState({
+          showMoreSpecialty: true,
+          specialties: res.data ? res.data : [],
+        });
+      }
+    } catch (error) {
+      console.log(error)
+      this.setState({
+        specialties: []
+      })
     }
   };
 
   handleCloseShowMore = () => {
     this.setState({
       showMoreSpecialty: false,
+      specialties: null,
     });
   };
 
   handleFilterSearch = async (value) => {
-    let res = await getAllSpecialty(10, 0, value);
-    if (res && res.errCode === 0) {
+    try {
       this.setState({
         showMoreSpecialty: true,
-        specialties: res.data ? res.data : [],
+        specialties: null
       });
+      let res = await getAllSpecialty(10, 0, value);
+      if (res && res.errCode === 0) {
+        this.setState({
+          specialties: res.data ? res.data : [],
+        });
+      }
+    } catch (error) {
+      console.log(error)
+      this.setState({
+        specialties: []
+      })
     }
   };
 
@@ -94,6 +123,7 @@ class Specialty extends Component {
             )}
           </div>
           <div className="section-body">
+            {!dataSpecialty && <Spinner />}
             <Slider {...this.props.settings}>
               {dataSpecialty &&
                 dataSpecialty.length > 0 &&

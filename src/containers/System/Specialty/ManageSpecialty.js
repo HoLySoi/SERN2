@@ -99,7 +99,6 @@ class ManageSpecialty extends Component {
       });
     } else {
       toast.error("Something wrongs....");
-      console.log("check res: ", res);
     }
   };
   handleDeleteSpecialty = async (specialty) => {
@@ -117,7 +116,6 @@ class ManageSpecialty extends Component {
   };
 
   handleEditSpecialty = (specialty) => {
-    console.log("check edit specialty", specialty);
     this.setState({
       isEditSpecialty: true,
       id: specialty.id,
@@ -129,7 +127,6 @@ class ManageSpecialty extends Component {
   };
 
   doEditSpecialty = async () => {
-    console.log("check state doEditSpecialty", this.state);
     try {
       let res = await editSpecialty(this.state);
 
@@ -154,7 +151,6 @@ class ManageSpecialty extends Component {
   render() {
     // let { allDays, allAvailableTime } = this.state;
     // let { language } = this.props;
-    console.log("check state", this.state);
     let arrSpecialty = this.state.arrSpecialty;
     return (
       <>

@@ -38,34 +38,24 @@ class ConfirmModal extends Component {
     }
 
     onAcceptBtnClick = () => {
-        const { contentOfConfirmModal } = this.props;
-        if (contentOfConfirmModal.handleFunc) {
-            contentOfConfirmModal.handleFunc(contentOfConfirmModal.dataFunc);
-        }
-        this.onClose();
+        this.props?.onConfirm && this.props.onConfirm();
     }
 
     onClose = () => {
-        this.props.setContentOfConfirmModal({
-            isOpen: false,
-            messageId: "",
-            handleFunc: null,
-            dataFunc: null
-        });
+        this.props?.onClose && this.props.onClose();
     }
 
     render() {
-        const { contentOfConfirmModal } = this.props;
-
+        const { contentOfConfirmModal, isOpen, children, isButtonDisable } = this.props;
         return (
-            <Modal isOpen={contentOfConfirmModal.isOpen} className='confirm-modal' centered={true}>
+            <Modal isOpen={isOpen} className='confirm-modal' centered={true}>
                 <div className="modal-header">
                     <div className="modal-title">
                         <FormattedMessage id={"common.confirm"} />
                     </div>
                     <div className="col-auto">
                         <button className="btn btn-close" onClick={this.onClose}>
-                            <i className="fal fa-times" />
+                            <i className="fa fa-times" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -74,17 +64,17 @@ class ConfirmModal extends Component {
                     <div className="confirm-modal-content">
                         <div className="row">
                             <div className="col-12">
-                                <FormattedMessage id={contentOfConfirmModal.messageId ? contentOfConfirmModal.messageId : "common.confirm-this-task"} />
+                                {children ? children : <FormattedMessage id={contentOfConfirmModal.messageId ? contentOfConfirmModal.messageId : "common.confirm-this-task"} />}
                             </div>
 
                             <hr />
 
                             <div className="col-12">
-                                <div className="btn-container text-center">
-                                    <button className="btn btn-add" onClick={this.onClose} >
+                                <div className="btn-container text-right">
+                                    <button className="btn btn-warning" onClick={this.onClose} >
                                         <FormattedMessage id="common.close" />
                                     </button>
-                                    <button ref={this.acceptBtnRef} className="btn btn-add" onClick={this.onAcceptBtnClick}>
+                                    <button ref={this.acceptBtnRef} className="btn btn-danger" onClick={this.onAcceptBtnClick} disabled={isButtonDisable}>
                                         <FormattedMessage id={"common.accept"} />
                                     </button>
                                 </div>

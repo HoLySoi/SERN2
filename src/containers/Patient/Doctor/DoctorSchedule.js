@@ -104,7 +104,6 @@ class DoctorSchedule extends Component {
           allAvailableTime: res.data ? res.data : [],
         });
       }
-      console.log("check res schedule from react: ", res);
     }
   };
 
@@ -113,7 +112,6 @@ class DoctorSchedule extends Component {
       isOpenModalBooking: true,
       dataScheduleTimeModal: time,
     });
-    console.log(" time:", time);
   };
 
   closeBookingClose = () => {
@@ -178,7 +176,7 @@ class DoctorSchedule extends Component {
                   <div className="book-free">
                     <span>
                       <FormattedMessage id="patient.detail-doctor.choose" />
-                      <i class="far fa-hand-point-up"></i>
+                      <i className="far fa-hand-point-up"></i>
                       <FormattedMessage id="patient.detail-doctor.book-free" />
                     </span>
                   </div>

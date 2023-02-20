@@ -8,14 +8,15 @@ import { LANGUAGES } from "../../../utils";
 import { withRouter } from "react-router";
 import ShowMore from "../../../components/ShowMore/ShowMore";
 import { getTopDoctorHomeService } from "../../../services/userService";
+import { Spinner } from "reactstrap";
 
 class OutStandingDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrDoctors: [],
+      arrDoctors: null,
       showMoreDoctors: false,
-      doctors: [],
+      doctors: null,
     };
   }
 
@@ -47,38 +48,56 @@ class OutStandingDoctor extends Component {
   };
 
   handleShowMoreDoctor = async () => {
-    let res = await getTopDoctorHomeService(10, 0, "");
-    if (res && res.errCode === 0) {
+    try {
+      this.setState({
+        showMoreDoctors: true,
+      });
+      let res = await getTopDoctorHomeService(10, 0, "");
+      if (res && res.errCode === 0) {
+        this.setState({
+          doctors: res.data ? res.data : [],
+        });
+      }
       this.setState({
         doctors: res.data ? res.data : [],
       });
+    } catch (e) {
+      console.log(e);
+      this.setState({
+        doctors: []
+      })
     }
-    this.setState({
-      showMoreDoctors: true,
-      doctors: res.data ? res.data : [],
-    });
   };
 
   handleCloseShowMore = () => {
     this.setState({
       showMoreDoctors: false,
+      doctors: null,
     });
   };
 
   handleFilterSearch = async (value) => {
-    let res = await getTopDoctorHomeService(10, 0, value);
-    if (res && res.errCode === 0) {
+    try {
       this.setState({
-        doctors: res.data ? res.data : [],
+        doctors: null,
       });
+      let res = await getTopDoctorHomeService(10, 0, value);
+      if (res && res.errCode === 0) {
+        this.setState({
+          doctors: res.data ? res.data : [],
+        });
+      }
+    } catch (e) {
+      console.log(e);
+      this.setState({
+        doctors: []
+      })
     }
   };
 
   render() {
     let arrDoctors = this.state.arrDoctors;
     let { language } = this.props;
-    // arrDoctors = arrDoctors.concat(arrDoctors);
-    console.log("concat arrDoctors", arrDoctors);
     return (
       <div className="section-share section-outstanding-doctor">
         <div className="section-container">
@@ -105,6 +124,7 @@ class OutStandingDoctor extends Component {
             )}
           </div>
           <div className="section-body">
+            {!arrDoctors && <Spinner />}
             <Slider {...this.props.settings}>
               {arrDoctors &&
                 arrDoctors.length > 0 &&

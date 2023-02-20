@@ -58,7 +58,6 @@ class DoctorExtraInfor extends Component {
   render() {
     let { isShowDetailInfor, extraInfor } = this.state;
     let { language } = this.props;
-    console.log("check this.state", this.state);
     return (
       <React.Fragment>
         <div className="doctor-extra-infor-container">

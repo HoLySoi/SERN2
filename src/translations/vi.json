@@ -84,8 +84,10 @@
     "gender": "Giới tính",
     "time": "Thời gian",
     "confirm": "HOÀN THÀNH",
+    "cancel": "TỪ CHỐI",
     "action": "Thao tác",
-    "no-data": "KHÔNG CÓ DỮ LIỆU"
+    "no-data": "KHÔNG CÓ DỮ LIỆU",
+    "empty-reason": "Lý do không được để trống"
   },
   "clinic": {
     "manage-clinic": "QUẢN LÝ PHÒNG KHÁM",
@@ -166,5 +168,14 @@
     "clinic": "Bệnh viện, Phòng khám",
     "outstanding-clinic": "Bệnh viện, phòng khám nổi bật",
     "specialty": "Chuyên khoa"
+  },
+  "common": {
+    "confirm-this-task": "Xác nhận thao tác này?",
+    "confirm": "Xác nhận",
+    "close": "Thoát",
+    "accept": "Xác nhận",
+    "reason": "Lý do hủy",
+    "error": "Có lỗi xảy ra",
+    "success": "Thành công"
   }
 }

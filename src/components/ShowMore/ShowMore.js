@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Spinner } from "reactstrap";
 import { LANGUAGES } from "../../utils";
 import "./ShowMore.scss";
 
@@ -19,6 +20,7 @@ const ShowMore = (props) => {
     return () => {
       debounce && clearTimeout(debounce);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   const getImageBase64 = (item) => {
@@ -70,6 +72,7 @@ const ShowMore = (props) => {
       </div>
       {subTitle && <h3>{subTitle}</h3>}
       <div className="show-more data-list">
+        {!data && <Spinner />}
         {data &&
           data.map((item, index) => {
             return (
