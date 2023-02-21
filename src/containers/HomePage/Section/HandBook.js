@@ -6,12 +6,15 @@ import Slider from "react-slick";
 import { getAllHandbook } from "../../../services/userService";
 import { withRouter } from "react-router";
 import { Spinner } from "reactstrap";
+import ShowMore from "../../../components/ShowMore/ShowMore";
 
 class Handbook extends Component {
   constructor(props) {
     super(props);
     this.state = {
       dataHandbook: null,
+      showMoreHandBook: false,
+      handBooks: null
     };
   }
 
@@ -38,14 +41,44 @@ class Handbook extends Component {
     //   });
     // }
   }
+
   handleViewDetailHandbook = (item) => {
     if (this.props.history) {
       this.props.history.push(`/detail-handbook/${item.id}`);
     }
   };
+  handleShowMoreHandBook = async () => {
+    try {
+      this.setState({
+        showMoreHandBook: true,
+      });
+      let res = await getAllHandbook();
+      if (res && res.errCode === 0) {
+        this.setState({
+          handBooks: res.data ? res.data : [],
+        });
+      }
+      this.setState({
+        handBooks: res.data ? res.data : [],
+      });
+    } catch (e) {
+      console.log(e);
+      this.setState({
+        handBooks: []
+      })
+    }
+  };
+
+  handleCloseShowMore = () => {
+    this.setState({
+      showMoreHandBook: false,
+      handBooks: null,
+    });
+  };
 
   render() {
     let { dataHandbook } = this.state;
+    const { language } = this.props;
     return (
       <div className="section-share section-handbook">
         <div className="section-container">
@@ -53,9 +86,19 @@ class Handbook extends Component {
             <span className="title-section">
               <FormattedMessage id="homepage.handbook" />
             </span>
-            <button className="btn-section">
+            <button className="btn-section" onClick={this.handleShowMoreHandBook}>
               <FormattedMessage id="homepage.more-infor" />
             </button>
+            {this.state.showMoreHandBook && (
+              <ShowMore
+                title={<FormattedMessage id="show-more.handbook" />}
+                onClose={this.handleCloseShowMore}
+                data={this.state.handBooks}
+                type="handbook"
+                language={language}
+                onClick={this.handleViewDetailHandbook}
+              />
+            )}
           </div>
           <div className="section-body">
             {!dataHandbook && <Spinner />}

@@ -17,7 +17,7 @@ class ManageSchedule extends Component {
     this.state = {
       listDoctors: [],
       selectedDoctor: {},
-      currentDate: new Date(),
+      currentDate: "",
       rangeTime: [],
     };
   }

@@ -6,8 +6,19 @@ import { LANGUAGES } from "../../utils";
 import { changeLanguageApp } from "../../store/actions";
 import { withRouter } from "react-router";
 import SearchAll from "../../components/SearchAll/SearchAll";
+import ShowMore from "../../components/ShowMore/ShowMore";
+import { getAllClinic, getAllHandbook, getAllSpecialty, getTopDoctorHomeService } from "../../services/userService";
 
 class HomeHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMore: false,
+      data: null,
+      type: "",
+      title: ""
+    };
+  }
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
   };
@@ -18,23 +29,72 @@ class HomeHeader extends Component {
     }
   };
 
+  handleCloseShowMore = () => {
+    this.setState({
+      showMore: false,
+      type: "",
+    });
+  };
+
+  showMore = async (e) => {
+    this.setState({
+      showMore: true,
+      type: e,
+      data: null,
+      title: <FormattedMessage id={`show-more.${e}`} />
+    })
+    try {
+      switch (e) {
+        case "doctor":
+          this.setState({
+            data: (await getTopDoctorHomeService()).data,
+            onClick: (item) => this.props.history.push(`/detail-doctor/${item.id}`),
+
+          })
+          break;
+        case "specialty":
+          this.setState({
+            data: (await getAllSpecialty()).data,
+            onClick: (item) => this.props.history.push(`/detail-specialty/${item.id}`),
+
+          })
+          break;
+        case "clinic":
+          this.setState({
+            data: (await getAllClinic()).data,
+            onClick: (item) => this.props.history.push(`/detail-clinic/${item.id}`),
+
+          })
+          break;
+        case "handbook":
+          this.setState({
+            data: (await getAllHandbook()).data,
+            onClick: (item) => this.props.history.push(`/detail-handbook/${item.id}`),
+
+          })
+          break;
+        default:
+          break;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   render() {
     let language = this.props.language;
-    // console.log(language);
-    // console.log(LANGUAGES);
     return (
       <React.Fragment>
         <div className="home-header-container">
           <div className="home-header-container">
             <div className="left-content">
-              {/* <i className="fas fa-bars"></i> */}
               <div
                 className="header-logo"
                 onClick={() => this.returnToHome()}
               ></div>
             </div>
             <div className="center-content">
-              <a href="#specialty" className="child-content">
+              <a href="#specialty" className="child-content" onClick={() => this.showMore("specialty")}>
                 <b>
                   <FormattedMessage id="homeheader.speciality" />
                 </b>
@@ -42,7 +102,7 @@ class HomeHeader extends Component {
                   <FormattedMessage id="homeheader.searchdoctor" />
                 </div>
               </a>
-              <a href="#clinic" className="child-content">
+              <a href="#clinic" className="child-content" onClick={() => this.showMore("clinic")}>
                 <b>
                   <FormattedMessage id="homeheader.health-facility" />
                 </b>
@@ -50,7 +110,7 @@ class HomeHeader extends Component {
                   <FormattedMessage id="homeheader.select-room" />
                 </div>
               </a>
-              <a href="#doctor" className="child-content">
+              <a href="#doctor" className="child-content" onClick={() => this.showMore("doctor")}>
                 <b>
                   <FormattedMessage id="homeheader.doctor" />
                 </b>
@@ -58,7 +118,7 @@ class HomeHeader extends Component {
                   <FormattedMessage id="homeheader.select-doctor" />
                 </div>
               </a>
-              <a href="#handbook" className="child-content">
+              <a href="#handbook" className="child-content" onClick={() => this.showMore("handbook")}>
                 <b>
                   <FormattedMessage id="homeheader.fee" />
                 </b>
@@ -67,6 +127,17 @@ class HomeHeader extends Component {
                 </div>
               </a>
             </div>
+            {this.state.showMore && (
+              <ShowMore
+                title={this.state.title}
+                onClose={this.handleCloseShowMore}
+                data={this.state.data}
+                type={this.state.type}
+                language={this.props.language}
+                onClick={this.state.onClick}
+              // onSubmit={this.handleFilterSearch}
+              />
+            )}
             <div className="right-content">
               <div className="support">
                 <i className="fas fa-question-circle"></i>

@@ -25,6 +25,9 @@ const ShowMore = (props) => {
 
   const getImageBase64 = (item) => {
     let imageBase64 = "";
+    if (type === "handbook") {
+      return <img src={item.image} alt={item.name} className={`${type}-img`} />
+    }
     if (type === "clinic" || type === "specialty") {
       imageBase64 = item.image;
     } else if (item.image) {
@@ -41,7 +44,9 @@ const ShowMore = (props) => {
 
       return language === LANGUAGES.VI ? nameVi : nameEn;
     }
-
+    if (type === "handbook") {
+      return item.name;
+    }
     if (type === "clinic" || type === "specialty") {
       return item.name;
     }
@@ -62,14 +67,14 @@ const ShowMore = (props) => {
         <i className="fa fa-arrow-left" onClick={onClose}></i>
         <h2>{title}</h2>
       </div>
-      <div className="input-search">
+      {onSubmit && <div className="input-search">
         <input
           placeholder={
             language === LANGUAGES.VI ? "Nhập tìm kiếm" : "Input to search"
           }
           onChange={handleChangeValue}
         />
-      </div>
+      </div>}
       {subTitle && <h3>{subTitle}</h3>}
       <div className="show-more data-list">
         {!data && <Spinner />}

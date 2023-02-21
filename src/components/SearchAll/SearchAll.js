@@ -40,7 +40,7 @@ const SearchAll = (props) => {
   };
 
   const handleClick = (item, key) => {
-    let nav = "/home";
+    let nav = "/";
     if (key === "doctor") {
       nav = `/detail-doctor/${item.id}`;
     } else if (key === "specialty") {

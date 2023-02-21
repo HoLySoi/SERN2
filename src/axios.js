@@ -5,7 +5,8 @@ const user = localStorage.getItem("user")
 const instance = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
   headers: {
-    "Authentication": `Bearer ${user ? JSON.parse(user)?.token || "" : ""}`
+    "Authentication": `Bearer ${user ? JSON.parse(user)?.token || "" : ""}`,
+    "Access-Control-Allow-Origin": "*"
   }
 });
 
