@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./HandBook.scss";
+import "./Handbook.scss";
 import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import { getAllHandbook } from "../../../services/userService";
@@ -14,7 +14,7 @@ class Handbook extends Component {
     this.state = {
       dataHandbook: null,
       showMoreHandBook: false,
-      handBooks: null
+      handBooks: null,
     };
   }
 
@@ -27,10 +27,10 @@ class Handbook extends Component {
         });
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
       this.setState({
-        dataHandbook: []
-      })
+        dataHandbook: [],
+      });
     }
   }
 
@@ -64,8 +64,8 @@ class Handbook extends Component {
     } catch (e) {
       console.log(e);
       this.setState({
-        handBooks: []
-      })
+        handBooks: [],
+      });
     }
   };
 
@@ -86,7 +86,10 @@ class Handbook extends Component {
             <span className="title-section">
               <FormattedMessage id="homepage.handbook" />
             </span>
-            <button className="btn-section" onClick={this.handleShowMoreHandBook}>
+            <button
+              className="btn-section"
+              onClick={this.handleShowMoreHandBook}
+            >
               <FormattedMessage id="homepage.more-infor" />
             </button>
             {this.state.showMoreHandBook && (

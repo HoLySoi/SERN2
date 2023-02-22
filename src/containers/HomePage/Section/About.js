@@ -7,35 +7,40 @@ class About extends Component {
   render() {
     return (
       <div className="section-share section-about">
-        <div className="section-about-header">
-          <FormattedMessage id="homepage.instruct" />
-        </div>
-        <div className="section-about-content">
-          <div className="content-left">
-            <div>
-              <iframe
-                className="video"
-                width="1280"
-                height="720"
-                src="https://www.youtube.com/embed/kMIOZS03774"
-                title="HƯỚNG DẪN TỰ LẤY MẪU XÉT NGHIỆM COVID-19 TẠI NHÀ| Kênh thông tin Bộ Y tế"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-            </div>
+        <div className="section-container">
+          {" "}
+          <div className="section-header">
+            <span className="title-section">
+              <FormattedMessage id="homepage.instruct" />
+            </span>
           </div>
-          <div className="content-right">
-            <p>
-              BookingCare là nền tảng đặt lịch khám bệnh đầu tiên tại Việt Nam
-              có định hướng kết nối bệnh nhân, bác sĩ, và cơ sở y tế; hỗ trợ đặt
-              lịch khám miễn phí. ĐÚNG BỆNH NHÂN, ĐÚNG BÁC SĨ
-            </p>
-            <p>
-              {" "}
-              Đặt lịch khám với BookingCare qua: - Website:
-              https://bookingcare.vn - Hotline hỗ trợ : 024-7301-2468
-            </p>
+          <div className="section-about-body">
+            <div className="content-left">
+              <div>
+                <iframe
+                  className="video"
+                  width="1280"
+                  height="720"
+                  src="https://www.youtube.com/embed/kMIOZS03774"
+                  title="HƯỚNG DẪN TỰ LẤY MẪU XÉT NGHIỆM COVID-19 TẠI NHÀ| Kênh thông tin Bộ Y tế"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+            <div className="content-right">
+              <p>
+                Các đóng góp chính của ĐATN là: (i) cung cấp thông tin cho bệnh
+                nhân về các cơ sở y tế, chuyên khoa, bác sĩ, các bài viết về
+                chăm sóc sức khỏe, (ii) giúp bệnh nhân có thể dễ dàng đặt lịch
+                khám bệnh với bác sĩ mong muốn, (iii) giúp các bác sĩ quản lý
+                thông tin của bản thân, quản lý bệnh nhân khám bệnh một cách đơn
+                giản, (iv) bác sĩ, bệnh nhân có thể sử dụng một trong hai ngôn
+                ngữ Tiếng Anh, Tiếng Việt để sử dụng hệ thống.
+              </p>
+              <p></p>
+            </div>
           </div>
         </div>
       </div>

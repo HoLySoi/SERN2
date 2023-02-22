@@ -1,41 +1,24 @@
-.section-about {
+.section-about-body {
+    display: flex;
+    gap    : 15px;
 
-    padding: 0 100px;
-    height : 500px !important;
+    .content-left {
+        margin: 0 100px;
 
-    .section-about-header {
-
-        font-size    : 24px;
-        font-weight  : bold;
-        padding      : 20px 10px;
-        margin-right : 1300px;
-        margin-bottom: 30px;
+        .video {
+            width : 533px;
+            height: 300px;
+        }
 
 
     }
 
-    .section-about-content {
-        display: flex;
-        gap    : 15px;
+    .content-right {
+        width: 40%;
 
-        .content-left {
-            margin: 0 100px;
-
-            .video {
-                width : 640px;
-                height: 360px;
-            }
-
-
-        }
-
-        .content-right {
-            width: 40%;
-
-            p {
-                text-align: justify;
-                font-style: italic;
-            }
+        p {
+            text-align: justify;
+            font-style: italic;
         }
     }
 }
