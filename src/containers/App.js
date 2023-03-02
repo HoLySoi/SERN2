@@ -52,32 +52,32 @@ class App extends Component {
                 <Switch>
                   <Route
                     path={path.LOGIN}
-                    component={userIsNotAuthenticated(Login)}
+                    component={userIsNotAuthenticated(Login)} exact
                   />
                   <Route
                     path={path.SYSTEM}
-                    component={userIsAuthenticated(System)}
+                    component={userIsAuthenticated(System)} exact
                   />
                   <Route
                     path={"/doctor/"}
-                    component={userIsAuthenticated(Doctor)}
+                    component={userIsAuthenticated(Doctor)} exact
                   />
-                  <Route path={path.HOMEPAGE} component={HomePage} />
-                  <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                  <Route path={path.HOMEPAGE} component={HomePage} exact />
+                  <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} exact />
                   <Route
                     path={path.DETAIL_SPECIALTY}
-                    component={DetailSpecialty}
+                    component={DetailSpecialty} exact
                   />
                   <Route
                     path={path.DETAIL_HANDBOOK}
-                    component={DetailHandbook}
+                    component={DetailHandbook} exact
                   />
-                  <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
+                  <Route path={path.DETAIL_CLINIC} component={DetailClinic} exact />
                   <Route
                     path={path.VERIFY_EMAIL_BOOKING}
-                    component={VerifyEmail}
+                    component={VerifyEmail} exact
                   />
-                  <Route path={path.HOME} exact component={Home} />
+                  <Route path={path.HOME} component={Home} />
                 </Switch>
               </CustomScrollbars>
             </div>
