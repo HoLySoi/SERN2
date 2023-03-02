@@ -14,6 +14,7 @@
     "bootstrap": "^4.6.0",
     "connected-react-router": "^6.9.1",
     "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
     "lodash": "^4.17.21",
     "markdown-it": "^12.1.0",
     "moment": "^2.29.0",
@@ -50,6 +51,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:development": "env-cmd -f .env.development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

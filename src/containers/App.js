@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Route, Switch } from "react-router-dom";
-import { ConnectedRouter as Router } from "connected-react-router";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+// import { ConnectedRouter as Router } from "connected-react-router";
 import { history } from "../redux";
 import { ToastContainer } from "react-toastify";
 import {
@@ -43,7 +43,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Router history={history}>
+        <BrowserRouter history={history}>
           <div className="main-container">
             {/* {this.props.isLoggedIn && <Header />} */}
 
@@ -107,7 +107,7 @@ class App extends Component {
             // theme="light"
             />
           </div>
-        </Router>
+        </BrowserRouter>
       </Fragment>
     );
   }

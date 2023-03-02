@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Spinner } from "reactstrap";
 import { LANGUAGES } from "../../utils";
 import "./ShowMore.scss";
+import { Link } from "react-router-dom";
 
 const ShowMore = (props) => {
   const { title, subTitle, onClose, data, language, onClick, onSubmit, type } =
@@ -64,7 +65,9 @@ const ShowMore = (props) => {
   return (
     <div className="showMore">
       <div className="showMore-header">
-        <i className="fa fa-arrow-left" onClick={onClose}></i>
+        <Link to="/home">
+          <i className="fa fa-arrow-left" onClick={onClose}></i>
+        </Link>
         <h2>{title}</h2>
       </div>
       {onSubmit && <div className="input-search">
