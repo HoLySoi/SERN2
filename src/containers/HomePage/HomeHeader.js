@@ -8,7 +8,7 @@ import { withRouter } from "react-router";
 import SearchAll from "../../components/SearchAll/SearchAll";
 import ShowMore from "../../components/ShowMore/ShowMore";
 import { getAllClinic, getAllHandbook, getAllSpecialty, getTopDoctorHomeService } from "../../services/userService";
-
+import { Link } from "react-router-dom";
 class HomeHeader extends Component {
   constructor(props) {
     super(props);
@@ -88,44 +88,41 @@ class HomeHeader extends Component {
         <div className="home-header-container">
           <div className="home-header-container">
             <div className="left-content">
-              <div
-                className="header-logo"
-                onClick={() => this.returnToHome()}
-              ></div>
+              <Link className="header-logo" to="/"></Link>
             </div>
             <div className="center-content">
-              <a href="#specialty" className="child-content" onClick={() => this.showMore("specialty")}>
+              <Link to="#specialty" className="child-content" onClick={() => this.showMore("specialty")}>
                 <b>
                   <FormattedMessage id="homeheader.speciality" />
                 </b>
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.searchdoctor" />
                 </div>
-              </a>
-              <a href="#clinic" className="child-content" onClick={() => this.showMore("clinic")}>
+              </Link>
+              <Link to="#clinic" className="child-content" onClick={() => this.showMore("clinic")}>
                 <b>
                   <FormattedMessage id="homeheader.health-facility" />
                 </b>
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.select-room" />
                 </div>
-              </a>
-              <a href="#doctor" className="child-content" onClick={() => this.showMore("doctor")}>
+              </Link>
+              <Link to="#doctor" className="child-content" onClick={() => this.showMore("doctor")}>
                 <b>
                   <FormattedMessage id="homeheader.doctor" />
                 </b>
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.select-doctor" />
                 </div>
-              </a>
-              <a href="#handbook" className="child-content" onClick={() => this.showMore("handbook")}>
+              </Link>
+              <Link to="#handbook" className="child-content" onClick={() => this.showMore("handbook")}>
                 <b>
                   <FormattedMessage id="homeheader.fee" />
                 </b>
                 <div className="subs-title">
                   <FormattedMessage id="homeheader.check-health" />
                 </div>
-              </a>
+              </Link>
             </div>
             {this.state.showMore && (
               <ShowMore
