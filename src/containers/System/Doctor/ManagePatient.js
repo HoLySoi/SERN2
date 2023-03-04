@@ -123,7 +123,7 @@ class ManagePatient extends Component {
       this.setState({
         isShowLoading: false,
       });
-      toast.error("something wrongs....");
+      toast.error("Something wrongs....");
       console.log("error send remedy: ", res);
     }
   };
@@ -175,13 +175,14 @@ class ManagePatient extends Component {
         isOpenModalConfirm: false,
         cancelReason: "",
       });
-      toast.success(<FormattedMessage id={"common.success"} />);
+      toast.success("Send rejection email succeeds");
     } catch (e) {
-      toast.error(<FormattedMessage id="common.error" />);
+      toast.error("Something wrongs...");
     } finally {
       this.setState({
         isButtonDisable: false,
       });
+      await this.getDataPatient();
     }
   };
 
