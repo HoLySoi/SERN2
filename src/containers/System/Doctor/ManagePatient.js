@@ -136,7 +136,8 @@ class ManagePatient extends Component {
   };
 
   onConfirm = async () => {
-    const { email, doctorId, patientName, timeType } = this.state.dataModal;
+    const { email, doctorId, patientId, timeType, patientName } =
+      this.state.dataModal;
     const { language } = this.props;
     const { currentDate } = this.state;
     const date =
@@ -166,6 +167,7 @@ class ManagePatient extends Component {
         language,
         reason: this.state.cancelReason,
         doctorId,
+        patientId,
         timeType,
         date: currentDate,
       });
