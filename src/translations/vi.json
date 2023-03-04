@@ -81,6 +81,7 @@
     "name": "Tên",
     "number": "STT",
     "address": "Địa chỉ",
+    "phoneNumber": "SĐT",
     "gender": "Giới tính",
     "time": "Thời gian",
     "confirm": "HOÀN THÀNH",

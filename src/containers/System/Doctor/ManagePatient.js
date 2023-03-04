@@ -50,7 +50,7 @@ class ManagePatient extends Component {
     }
   };
 
-  async componentDidUpdate(prevProps, prevState, snapshot) { }
+  async componentDidUpdate(prevProps, prevState, snapshot) {}
   handleOnChangeDatePicker = (date) => {
     this.setState(
       {
@@ -132,8 +132,8 @@ class ManagePatient extends Component {
     this.setState({
       isOpenModalConfirm: false,
       cancelReason: "",
-    })
-  }
+    });
+  };
 
   onConfirm = async () => {
     const { email, doctorId, patientName, timeType } = this.state.dataModal;
@@ -141,17 +141,23 @@ class ManagePatient extends Component {
     const { currentDate } = this.state;
     const date =
       language === LANGUAGES.VI
-        ? moment.unix(currentDate / 1000).locale("vi").format("dddd - DD/MM/YYYY")
-        : moment.unix(currentDate / 1000).locale("en").format("ddd - MM/DD/YYYY");
+        ? moment
+            .unix(currentDate / 1000)
+            .locale("vi")
+            .format("dddd - DD/MM/YYYY")
+        : moment
+            .unix(currentDate / 1000)
+            .locale("en")
+            .format("ddd - MM/DD/YYYY");
 
     if (!this.state.cancelReason) {
-      toast.error(<FormattedMessage id="manage-patient.empty-reason" />)
-      return
+      toast.error(<FormattedMessage id="manage-patient.empty-reason" />);
+      return;
     }
     try {
       this.setState({
-        isButtonDisable: true
-      })
+        isButtonDisable: true,
+      });
       await cancelPatientBookAppointment({
         email,
         fullName: patientName,
@@ -161,33 +167,29 @@ class ManagePatient extends Component {
         reason: this.state.cancelReason,
         doctorId,
         timeType,
-        date: currentDate
+        date: currentDate,
       });
       this.setState({
         isOpenModalConfirm: false,
         cancelReason: "",
-      })
-      toast.success(<FormattedMessage id={"common.success"} />)
+      });
+      toast.success(<FormattedMessage id={"common.success"} />);
     } catch (e) {
       toast.error(<FormattedMessage id="common.error" />);
     } finally {
       this.setState({
-        isButtonDisable: false
-      })
+        isButtonDisable: false,
+      });
     }
-  }
+  };
 
   renderAction = (item, time) => {
     const { statusId } = item;
     if (statusId === "S3") {
-      return (
-        <></>
-      )
+      return <></>;
     }
     if (statusId === "S4") {
-      return (
-        <></>
-      )
+      return <></>;
     }
     return (
       <>
@@ -204,11 +206,17 @@ class ManagePatient extends Component {
           <FormattedMessage id="manage-patient.cancel" />
         </button>
       </>
-    )
-  }
+    );
+  };
 
   render() {
-    let { dataPatient, isOpenRemedyModal, dataModal, isOpenModalConfirm, isButtonDisable } = this.state;
+    let {
+      dataPatient,
+      isOpenRemedyModal,
+      dataModal,
+      isOpenModalConfirm,
+      isButtonDisable,
+    } = this.state;
     let { language } = this.props;
     return (
       <>
@@ -251,7 +259,9 @@ class ManagePatient extends Component {
                       <th>
                         <FormattedMessage id="manage-patient.gender" />
                       </th>
-                      <th>Phonenumber</th>
+                      <th>
+                        <FormattedMessage id="manage-patient.phoneNumber" />
+                      </th>
                       <th>
                         <FormattedMessage id="manage-patient.action" />
                       </th>
@@ -268,16 +278,24 @@ class ManagePatient extends Component {
                             : item.patientData.genderData.valueEn;
 
                         return (
-                          <tr key={index} style={{ background: item.statusId === "S3" ? "green" : item.statusId === "S4" ? "gray" : "" }}>
+                          <tr
+                            key={index}
+                            style={{
+                              background:
+                                item.statusId === "S3"
+                                  ? "green"
+                                  : item.statusId === "S4"
+                                  ? "gray"
+                                  : "",
+                            }}
+                          >
                             <td>{index + 1}</td>
                             <td>{time}</td>
                             <td>{item.patientData.firstName}</td>
                             <td>{item.patientData.address}</td>
                             <td>{gender}</td>
                             <td>{item.patientData.phonenumber}</td>
-                            <td>
-                              {this.renderAction(item, time)}
-                            </td>
+                            <td>{this.renderAction(item, time)}</td>
                           </tr>
                         );
                       })
@@ -301,13 +319,19 @@ class ManagePatient extends Component {
             sendRemedy={this.sendRemedy}
           />
 
-          <ConfirmModal isOpen={isOpenModalConfirm} onClose={this.onClose} onConfirm={this.onConfirm} isButtonDisable={isButtonDisable}>
-            <FormattedMessage id={"common.reason"} /> <i className="fa fa-asterisk" aria-hidden="true" color="red"></i>:
+          <ConfirmModal
+            isOpen={isOpenModalConfirm}
+            onClose={this.onClose}
+            onConfirm={this.onConfirm}
+            isButtonDisable={isButtonDisable}
+          >
+            <FormattedMessage id={"common.reason"} />{" "}
+            <i className="fa fa-asterisk" aria-hidden="true" color="red"></i>:
             <Input
               onChange={(e) => {
                 this.setState({
-                  cancelReason: e.target.value
-                })
+                  cancelReason: e.target.value,
+                });
               }}
             />
           </ConfirmModal>
