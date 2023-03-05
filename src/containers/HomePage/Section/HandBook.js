@@ -8,7 +8,7 @@ import { withRouter } from "react-router";
 import { Spinner } from "reactstrap";
 import ShowMore from "../../../components/ShowMore/ShowMore";
 
-class Handbook extends Component {
+class HandBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -143,6 +143,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(Handbook)
+  connect(mapStateToProps, mapDispatchToProps)(HandBook)
 );
 // export default connect(mapStateToProps)(Handbook);
