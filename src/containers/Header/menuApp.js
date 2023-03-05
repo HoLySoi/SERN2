@@ -15,10 +15,10 @@ export const adminMenu = [
         name: "menu.admin.manage-doctor",
         link: "/system/manage-doctor",
       },
-      {
-        name: "menu.doctor.manage-schedule",
-        link: "/doctor/manage-schedule",
-      },
+      // {
+      //   name: "menu.doctor.manage-schedule",
+      //   link: "/doctor/manage-schedule",
+      // },
     ],
   },
   {

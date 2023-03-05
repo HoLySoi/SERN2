@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./HandBook.scss";
+import "./Handbook.scss";
 import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import { getAllHandbook } from "../../../services/userService";
@@ -13,7 +13,7 @@ class Handbook extends Component {
     super(props);
     this.state = {
       dataHandbook: null,
-      showMoreHandBook: false,
+      showMoreHandbook: false,
       handBooks: null,
     };
   }
@@ -47,10 +47,10 @@ class Handbook extends Component {
       this.props.history.push(`/detail-handbook/${item.id}`);
     }
   };
-  handleShowMoreHandBook = async () => {
+  handleShowMoreHandbook = async () => {
     try {
       this.setState({
-        showMoreHandBook: true,
+        showMoreHandbook: true,
       });
       let res = await getAllHandbook();
       if (res && res.errCode === 0) {
@@ -71,7 +71,7 @@ class Handbook extends Component {
 
   handleCloseShowMore = () => {
     this.setState({
-      showMoreHandBook: false,
+      showMoreHandbook: false,
       handBooks: null,
     });
   };
@@ -88,11 +88,11 @@ class Handbook extends Component {
             </span>
             <button
               className="btn-section"
-              onClick={this.handleShowMoreHandBook}
+              onClick={this.handleShowMoreHandbook}
             >
               <FormattedMessage id="homepage.more-infor" />
             </button>
-            {this.state.showMoreHandBook && (
+            {this.state.showMoreHandbook && (
               <ShowMore
                 title={<FormattedMessage id="show-more.handbook" />}
                 onClose={this.handleCloseShowMore}

@@ -40,7 +40,7 @@
     },
     "doctor": {
       "manage-schedule": "Manage Doctor Schedule",
-      "manage-patient": "Manage Doctor Patient"
+      "manage-patient": "Manage Patient"
     }
   },
   "manage-user": {
@@ -70,7 +70,7 @@
   },
   "manage-schedule": {
     "title": "Manage doctor examination plan",
-    "choose-doctor": "Choose doctor",
+    "choose-doctor": "Doctor",
     "choose-date": "Choose date",
     "save": "Save Infor"
   },
@@ -83,6 +83,7 @@
     "gender": "Gender",
     "time": "Time",
     "action": "Action",
+    "phoneNumber": "Phonenumber",
     "confirm": "FINISH",
     "cancel": "CANCEL",
     "no-data": "NO DATA",

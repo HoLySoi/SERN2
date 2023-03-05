@@ -53,12 +53,6 @@ class Login extends Component {
     }
   };
 
-  // redirectToSystemPage = () => {
-  //   const { navigate } = this.props;
-  //   const redirectPath = "/system/user-manage";
-  //   navigate(`${redirectPath}`);
-  // };
-
   handleLogin = async () => {
     this.setState({
       errMessage: "",

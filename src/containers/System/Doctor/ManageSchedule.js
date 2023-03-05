@@ -27,8 +27,8 @@ class ManageSchedule extends Component {
     await this.props.fetchAllDoctorsSchedule(10, 0, "");
     if (this.state?.listDoctors?.length === 1) {
       this.setState({
-        selectedDoctor: this.state.listDoctors[0]
-      })
+        selectedDoctor: this.state.listDoctors[0],
+      });
     }
   }
 
@@ -167,7 +167,7 @@ class ManageSchedule extends Component {
         //xxx
       });
     } else {
-      toast.error("error saveBulkScheduleDoctor ");
+      toast.error("Error saveBulkScheduleDoctor ");
       console.log("error saveBulkScheduleDoctor", res);
     }
   };
