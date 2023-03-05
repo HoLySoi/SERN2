@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./Handbook.scss";
+import "./HandBook.scss";
 import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import { getAllHandbook } from "../../../services/userService";
